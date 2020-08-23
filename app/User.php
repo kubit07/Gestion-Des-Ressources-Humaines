@@ -42,4 +42,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
 
     }
+
+    //la focntion retournera vrai si il trouve un role admin et faux dans le cas contraire
+    public function isAdmin(){
+
+        return $this->roles()->where('name','admin')->first();
+
+    }
 }
