@@ -27,3 +27,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 });
 
+
+Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function(){
+
+    Route::resource('agents','AgentsController');
+
+});
