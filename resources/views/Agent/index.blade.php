@@ -4,10 +4,13 @@
 <h1 style="font-family: Monotype Corsiva">Liste des Agents</h1>
 
 @can('edit-users')  
-<a href="{{route('agent.agents.create')}}" class="btn btn-secondary my-3" style="font-family: Monotype Corsiva">Nouveau agent<a/>
+<a href="{{route('agent.agents.create')}}" class="btn btn-secondary my-3" style="font-family: Monotype Corsiva" class="d-inline">Nouveau agent<a/>
+<a href="{{route('etat.etats.index')}}" class="btn btn-secondary my-3" style="font-family: Monotype Corsiva;" class="d-inline">Liste des Etats<a/>
 @endcan
 
+
     <ul>
+
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
                         <thead class="thead-dark">
                         <tr>

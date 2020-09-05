@@ -128,7 +128,8 @@ class AgentsController extends Controller
             return redirect()->route('admin.users.index');
         }
         $agent->delete();
-        return redirect()->route('agent.agents.index')->with('message', 'Suppression Effectué avec succès');;
+        
+        return redirect()->route('agent.agents.index')->with('message', 'Suppression Effectué avec succès');
     }
 
     private function storeImage(Agent $agent){

@@ -33,3 +33,11 @@ Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function(){
     Route::resource('agents','AgentsController');
 
 });
+
+
+Route::namespace('Etat')->prefix('etat')->name('etat.')->group(function(){
+
+    Route::resource('etats','EtatsController');
+
+});
+
