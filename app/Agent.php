@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Agent extends Model
 {
    
-    protected $fillable = [
-        'etat_id','type_agent_id','nomAgent','prenomAgent','sexeAgent','dateNaisAgent',
+        protected $fillable = [
+        'nomAgent','prenomAgent','sexeAgent','type_agent_id','etat_id','dateNaisAgent',
         'lieuNaisAgent','sitMatAgent','nationAgent','ethnieAgent','villageOrigineAgent','prefectureAgent',
         'religionAgent','groupeSangAgent','rhesusAgent','dateEmbauche','numDecision','dateDecision',
         'numCNSS','numAllocation','langue','loisir','dateRetraite','dateBapteme','pasteurBapteme',
         'dateConfirmation','lieuConfirmation','pasteurConfirm','nomParain','nomMarraine','photoAgent',
         'quartier','rue','ville','tel','email'
-    ];
+        ];
     
     protected $guarded = [];
 

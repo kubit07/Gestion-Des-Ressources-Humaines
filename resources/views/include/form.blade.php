@@ -29,9 +29,9 @@
 
     <div class="form-group">
         <label for="Masculin">Sexe :</label>
-        <input type="radio" name="sexeAgent" value="Masculin" id="Masculin"/>
+        <input type="radio" name="sexeAgent" value="Masculin" id="Masculin"  {{$agent->sexeAgent == "Masculin" ? "checked" : ""}}/>
         <label for="Masculin">Masculin</label>
-        <input type="radio" name="sexeAgent" value="Feminin" id="Feminin"/>
+        <input type="radio" name="sexeAgent" value="Feminin" id="Feminin"/ {{$agent->sexeAgent == "Feminin" ? "checked" : ""}}>
         <label for="Feminin">Feminin</label>
     </div>
         
@@ -42,16 +42,16 @@
 
 
     <div class="form-group">
-        <label for="type_agents_id">Type Agent :</label>
-        <select class="custom-select" name="type_agents_id"  @error('type_agents_id') is-invalid @enderror
-        id="type_agents_id">
+        <label for="type_agent_id">Type Agent :</label>
+        <select class="custom-select" name="type_agent_id"  @error('type_agent_id') is-invalid @enderror
+        id="type_agent_id">
         @foreach($type_agents as $type_agent)
-        <option value="{{ $type_agent->id }}" {{$agent->type_agents_id == $type_agent->id ? 'selected' : ''}}> {{$type_agent->libTypeAgent}} </option>
+        <option value="{{ $type_agent->id }}" {{$agent->type_agent_id == $type_agent->id ? 'selected' : ''}}> {{$type_agent->libTypeAgent}} </option>
         @endforeach
         </select>
-        @error('type_agents_id')
+        @error('type_agent_id')
                 <div class="invalid-feedback">
-                {{$errors->first('type_agents_id')}}
+                {{$errors->first('type_agent_id')}}
                 </div>
         @enderror
     </div>
@@ -61,32 +61,33 @@
 
     
     <div class="form-group">
-        <label for="etats_id">Etat Agent :</label>
-        <select class="custom-select" name="etats_id"  @error('etats_id') is-invalid @enderror
-        id="etats_id">
+        <label for="etat_id">Etat Agent :</label>
+        <select class="custom-select" name="etat_id"  @error('etat_id') is-invalid @enderror
+        id="etat_id">
         @foreach($etats as $etat)
-        <option value="{{ $etat->id }}" {{$agent->etats_id == $etat->id ? 'selected' : ''}}> {{$etat->libEtat}} </option>
+        <option value="{{ $etat->id }}" {{$agent->etat_id == $etat->id ? 'selected' : ''}}> {{$etat->libEtat}} </option>
         @endforeach
         </select>
         @error('etats_id')
                 <div class="invalid-feedback">
-                {{$errors->first('etats_id')}}
+                {{$errors->first('etat_id')}}
                 </div>
         @enderror
     </div>
 
 
 
-    <div class="form-group">
-        <label for="dateNaisAgent">Date Naissance Agent :</label>
-        <input type="date" class="form-control  @error('dateNaisAgent') is-invalid @enderror " name="dateNaisAgent"  value=""  id="dateNaisAgent" value="{{old('dateNaisAgent') ?? $agent->dateNaisAgent}} ">
-        @error('dateNaisAgent')
-            <div class="invalid-feedback">
-            {{$errors->first('dateNaisAgent')}}
-        </div>
-        @enderror     
+ 
+<div class="form-group">
+    <label for="dateNaisAgent">Date Naissance Agent :</label>
+    <input type="date" class="form-control  @error('dateNaisAgent') is-invalid @enderror " name="dateNaisAgent"
+    id="dateNaisAgent"  value="{{old('dateNaisAgent') ?? $agent->dateNaisAgent}}">
+    @error('dateNaisAgent')
+        <div class="invalid-feedback">
+        {{$errors->first('dateNaisAgent')}}
     </div>
-
+    @enderror     
+</div>
 
 
 
@@ -109,13 +110,13 @@
 
 <div class="form-group">
     <label for="Situation">Situation Matrimoniale :</label>
-    <input type="radio" name="sitMatAgent" value="Celibatiare" id="Situation"/>
+    <input type="radio" name="sitMatAgent" value="Celibatiare" id="Situation" {{$agent->sitMatAgent == "Celibatiare" ? "checked" : ""}} />
     <label for="Situation">Celibatiare</label>
-    <input type="radio" name="sitMatAgent" value="Marie" id="Situation"/>
+    <input type="radio" name="sitMatAgent" value="Marie" id="Situation" {{$agent->sitMatAgent == "Mariée" ? "checked" : ""}} />
     <label for="Situation">Mariée</label>
-    <input type="radio" name="sitMatAgent" value="Veuve" id="Situation"/>
+    <input type="radio" name="sitMatAgent" value="Veuve" id="Situation" {{$agent->sitMatAgent == "Veuve" ? "checked" : ""}}/>
     <label for="Situation">Veuve</label>
-    <input type="radio" name="sitMatAgent" value="Divorcée" id="Situation"/>
+    <input type="radio" name="sitMatAgent" value="Divorcée" id="Situation"  {{$agent->sitMatAgent == "Divorcée" ? "checked" : ""}}/>
     <label for="Situation">Divorcée</label>
 </div>
     
@@ -127,16 +128,16 @@
     <label for="nationAgent">Nationnalite Agent :</label>
     <select class="custom-select" name="nationAgent"  @error('nationAgent') is-invalid @enderror
     id="nationAgent">
-            <option value="Togolaise">Togolaise</option>
-            <option value="Beninoise">Beninoise</option>
-            <option value="Ghanéenne">Ghanéenne</option>
-            <option value="Burkinabè">Burkinabè</option>
-            <option value="Ivoirienne">Ivoirienne</option>
-            <option value="Gabonnaise">Gabonnaise</option>
-            <option value="Malienne">Malienne</option>
-            <option value="Sénégalaise">Sénégalaise</option>
-            <option value="Nigerienne">Nigerienne</option>  
-            <option value="Nigériane">Nigériane</option>       
+            <option value="Togolaise" @if($agent->nationAgent == "Togolaise") selected @endif> Togolaise</option>
+            <option value="Beninoise"  @if($agent->nationAgent == "Beninoise") selected @endif> Beninoise</option>
+            <option value="Ghanéenne"  @if($agent->nationAgent == "Ghanéenne") selected @endif> Ghanéenne</option>
+            <option value="Burkinabè"   @if($agent->nationAgent == "Burkinabè") selected @endif> Burkinabè</option>
+            <option value="Ivoirienne" @if($agent->nationAgent == "Ivoirienne") selected @endif> Ivoirienne</option>
+            <option value="Gabonnaise"  @if($agent->nationAgent == "Gabonnaise") selected @endif> Gabonnaise</option>
+            <option value="Malienne" @if($agent->nationAgent == "Malienne") selected @endif> Malienne</option>
+            <option value="Sénégalaise" @if($agent->nationAgent == "Sénégalaise") selected @endif> Sénégalaise</option>
+            <option value="Nigerienne" @if($agent->nationAgent == "Nigerienne") selected @endif> Nigerienne</option>  
+            <option value="Nigériane"  @if($agent->nationAgent == "Nigériane") selected @endif> Nigériane</option>       
     </select>
     @error('nationAgent')
             <div class="invalid-feedback">
@@ -153,17 +154,17 @@
     <label for="ethnieAgent">Ethnie Agent :</label>
     <select class="custom-select" name="ethnieAgent"  @error('ethnieAgent') is-invalid @enderror
     id="ethnieAgent">
-            <option value="Lossos">Lossos</option>
-            <option value="Ewes">Ewes</option>
-            <option value="Mina">Mina</option>
-            <option value="Kabyés">Kabyés</option>
-            <option value="Akpossos">Akpossos</option>
-            <option value="Adja">Adja</option>
-            <option value="Moba">Moba</option>
-            <option value="Adele">Adele</option>
-            <option value="Akébou">Akébou</option>
-            <option value="konkomba">konkomba</option>
-            <option value="Ani">Ani</option>
+            <option value="Lossos" @if($agent->ethnieAgent == "Lossos") selected @endif>Lossos</option>
+            <option value="Ewes"  @if($agent->ethnieAgent == "Ewes") selected @endif>Ewes</option>
+            <option value="Mina"   @if($agent->ethnieAgent == "Mina") selected @endif>Mina</option>
+            <option value="Kabyés"  @if($agent->ethnieAgent == "Kabyés") selected @endif>Kabyés</option>
+            <option value="Akpossos" @if($agent->ethnieAgent == "Akpossos") selected @endif>Akpossos</option>
+            <option value="Adja" @if($agent->ethnieAgent == "Adja") selected @endif>Adja</option>
+            <option value="Moba"  @if($agent->ethnieAgent == "Moba") selected @endif>Moba</option>
+            <option value="Adele" @if($agent->ethnieAgent == "Adele") selected @endif>Adele</option>
+            <option value="Akébou" @if($agent->ethnieAgent == "Akébou") selected @endif>Akébou</option>
+            <option value="konkomba" @if($agent->ethnieAgent == "konkomba") selected @endif>konkomba</option>
+            <option value="Ani" @if($agent->ethnieAgent == "Ani") selected @endif>Ani</option>
     </select>
     @error('ethnieAgent')
             <div class="invalid-feedback">
@@ -181,13 +182,13 @@
     <label for="villageOrigineAgent">Village Origine Agent :</label>
     <select class="custom-select" name="villageOrigineAgent"  @error('villageOrigineAgent') is-invalid @enderror
     id="villageOrigineAgent">
-            <option value="Baga">Baga</option>
-            <option value="kabou">kabou</option>
-            <option value="Lama-Bou">Lama-Bou</option>
-            <option value="Koumondè">Koumondè</option>
-            <option value="Tirka">Tirka</option>
-            <option value="Yohonou">Yohonou</option>
-            <option value="Kpogan">Kpogan</option>
+            <option value="Baga" @if($agent->villageOrigineAgent == "Baga") selected @endif>Baga</option>
+            <option value="kabou"  @if($agent->villageOrigineAgent == "kabou") selected @endif>kabou</option>
+            <option value="Lama-Bou"   @if($agent->villageOrigineAgent == "Lama-Bou") selected @endif>Lama-Bou</option>
+            <option value="Koumondè"  @if($agent->villageOrigineAgent == "Koumondè") selected @endif>Koumondè</option>
+            <option value="Tirka" @if($agent->villageOrigineAgent == "Tirka") selected @endif>Tirka</option>
+            <option value="Yohonou" @if($agent->villageOrigineAgent == "Yohonou") selected @endif>Yohonou</option>
+            <option value="Kpogan" @if($agent->villageOrigineAgent == "Kpogan") selected @endif>Kpogan</option>
     </select>
     @error('villageOrigineAgent')
             <div class="invalid-feedback">
@@ -206,29 +207,29 @@
     <select class="custom-select" name="prefectureAgent"  @error('prefectureAgent') is-invalid @enderror
     id="prefectureAgent">
             <optgroup label="Région Maritime">
-                <option value="Agoè-Nyivié">Agoè-Nyivié</option>
-                <option value="Golfe">Golfe</option>
-                <option value="Lacs">Lacs</option>
+                <option value="Agoè-Nyivié" @if($agent->prefectureAgent == "Agoè-Nyivié") selected @endif>Agoè-Nyivié</option>
+                <option value="Golfe" @if($agent->prefectureAgent == "Golfe") selected @endif>Golfe</option>
+                <option value="Lacs"  @if($agent->prefectureAgent == "Lacs") selected @endif>Lacs</option>
             </optgroup>
             <optgroup label="Région des Plateaux">
-                <option value="Agou">Agou</option>
-                <option value="Haho">Haho</option>
-                <option value="Ogou">Ogou</option>
+                <option value="Agou"  @if($agent->prefectureAgent == "Agou") selected @endif>Agou</option>
+                <option value="Haho" @if($agent->prefectureAgent == "Haho") selected @endif>Haho</option>
+                <option value="Ogou" @if($agent->prefectureAgent == "Ogou") selected @endif>Ogou</option>
             </optgroup>
             <optgroup label="Région Centrale">
-                <option value="Blitta">Blitta</option>
-                <option value="Sotouboua">Sotouboua</option>
-                <option value="Tchaoudjo">Tchaoudjo</option>
+                <option value="Blitta" @if($agent->prefectureAgent == "Blitta") selected @endif>Blitta</option>
+                <option value="Sotouboua" @if($agent->prefectureAgent == "Sotouboua") selected @endif>Sotouboua</option>
+                <option value="Tchaoudjo" @if($agent->prefectureAgent == "Tchaoudjo") selected @endif>Tchaoudjo</option>
             </optgroup>
             <optgroup label="Région de la Kara">
-                <option value="Kozah">Kozah</option>
-                <option value="Doufelgou">Doufelgou</option>
-                <option value="Bassar">Bassar</option>
+                <option value="Kozah" @if($agent->prefectureAgent == "Kozah") selected @endif>Kozah</option>
+                <option value="Doufelgou" @if($agent->prefectureAgent == "Doufelgou") selected @endif>Doufelgou</option>
+                <option value="Bassar" @if($agent->prefectureAgent == "Bassar") selected @endif>Bassar</option>
             </optgroup>
             <optgroup label="Région des Savanes">
-                <option value="Cinkassé">Cinkassé</option>
-                <option value="Oti">Oti</option>
-                <option value="Kpendjal">Kpendjal</option>
+                <option value="Cinkassé" @if($agent->prefectureAgent == "Cinkassé") selected @endif>Cinkassé</option>
+                <option value="Oti" @if($agent->prefectureAgent == "Oti") selected @endif>Oti</option>
+                <option value="Kpendjal" @if($agent->prefectureAgent == "Kpendjal") selected @endif>Kpendjal</option>
             </optgroup>
     </select>
     @error('prefectureAgent')
@@ -245,9 +246,9 @@
     <label for="religionAgent">Religion Agent :</label>
     <select class="custom-select" name= "religionAgent"  @error('religionAgent') is-invalid @enderror
     id="religionAgent">
-            <option value="Christrianisme">Christrianisme</option>
-            <option value="Animisme">Animisme</option>
-            <option value="Islam">Islam</option>
+            <option value="Christrianisme"  @if($agent->religionAgent == "Christrianisme") selected @endif>Christrianisme</option>
+            <option value="Animisme"  @if($agent->religionAgent == "Animisme") selected @endif>Animisme</option>
+            <option value="Islam"  @if($agent->religionAgent == "Islam") selected @endif>Islam</option>
     </select>
     @error('religionAgent')
             <div class="invalid-feedback">
@@ -263,20 +264,20 @@
     <select class="custom-select" name= "groupeSangAgent"  @error('groupeSangAgent') is-invalid @enderror
     id="groupeSangAgent">
         <optgroup label="Groupe A">
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
+            <option value="A+" @if($agent->groupeSangAgent == "A+") selected @endif>A+</option>
+            <option value="A-" @if($agent->groupeSangAgent == "A-") selected @endif>A-</option>
         </optgroup>
         <optgroup label="Groupe B">
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
+            <option value="B+" @if($agent->groupeSangAgent == "B+") selected @endif>B+</option>
+            <option value="B-" @if($agent->groupeSangAgent == "B-") selected @endif>B-</option>
         </optgroup>
         <optgroup label="Groupe AB">
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
+            <option value="AB+" @if($agent->groupeSangAgent == "AB+") selected @endif>AB+</option>
+            <option value="AB-" @if($agent->groupeSangAgent == "AB-") selected @endif>AB-</option>
         </optgroup>
         <optgroup label="Groupe O">
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
+            <option value="O+" @if($agent->groupeSangAgent == "O+") selected @endif>O+</option>
+            <option value="O-" @if($agent->groupeSangAgent == "O-") selected @endif>O-</option>
         </optgroup>
     </select>
     @error('groupeSangAgent')
@@ -293,8 +294,8 @@
     <label for="rhesusAgent">Rhesus Agent :</label>
     <select class="custom-select" name= "rhesusAgent"  @error('rhesusAgent') is-invalid @enderror
     id="rhesusAgent">
-            <option value="Positive">Rhesus Postive (+)</option>
-            <option value="Négative">Rhesus Négative (-)</option>
+            <option value="Positive" @if($agent->rhesusAgent == "Positive") selected @endif>Rhesus Postive (+)</option>
+            <option value="Négative" @if($agent->rhesusAgent == "Négative") selected @endif>Rhesus Négative (-)</option>
     </select>
     @error('rhesusAgent')
             <div class="invalid-feedback">
@@ -395,11 +396,11 @@
 <div class="form-group">
     <label for="langue">Langue Agent :</label>
     <select class="custom-select" name= "langue"  @error('langue') is-invalid @enderror id="langue">
-            <option value="Francais">Francais</option>
-            <option value="Anglais">Anglais</option>
-            <option value="Espagnol">Espagnol</option>
-            <option value="Allemand">Allemand</option>
-            <option value="Italien">Italien</option>
+            <option value="Francais" @if($agent->langue == "Francais") selected @endif>Francais</option>
+            <option value="Anglais" @if($agent->langue == "Anglais") selected @endif>Anglais</option>
+            <option value="Espagnol" @if($agent->langue == "Espagnol") selected @endif>Espagnol</option>
+            <option value="Allemand" @if($agent->langue == "Allemand") selected @endif>Allemand</option>
+            <option value="Italien" @if($agent->langue == "Italien") selected @endif>Italien</option>
     </select>
     @error('langue')
             <div class="invalid-feedback">
@@ -415,7 +416,7 @@
 <div class="form-group">
     <label for="loisir">Loisirs Agent :</label>
     <input type="text" class="form-control  @error('loisir') is-invalid @enderror " name="loisir"
-    placeholder="Loisirs Agent...." id="langue"  value="{{old('langue') ?? $agent->langue}}">
+    placeholder="Loisirs Agent...." id="loisir"  value="{{old('loisir') ?? $agent->loisir}}">
     @error('loisir')
         <div class="invalid-feedback">
         {{$errors->first('loisir')}}
@@ -489,7 +490,7 @@
 
 <div class="form-group">
     <label for="lieuConfirmation">Lieu de Confirmation Agent :</label>
-    <input type="text" class="form-control  @error('lieuConfirmation') is-invalid @enderror " name="lieuConfirmation"  placeholder="Rentrer le lieu de confirmation de l'agent...."  value="{{old('lieuConfirmation') ?? $agent->lieuConfirmation}}">
+    <input id="lieuConfirmation" type="text" class="form-control  @error('lieuConfirmation') is-invalid @enderror " name="lieuConfirmation"  placeholder="Rentrer le lieu de confirmation de l'agent...."  value="{{old('lieuConfirmation') ?? $agent->lieuConfirmation}}">
     @error('lieuConfirmation')
         <div class="invalid-feedback">
         {{$errors->first('lieuConfirmation')}}
@@ -551,17 +552,16 @@
 
 
 
-
-<div class="form-group">
-    <div class="custom-file">
-    <input type="file" name="photoAgent" class="custom-file-input @error('photoAgent') is-invalid @enderror" id="photoAgent" >
-    <label class="custom-file-label" for="photoAgent">Choisir une photo de l'agent...</label>
-    @error('photoAgent')
-            <div class="invalid-feedback">
-            {{$errors->first('photoAgent')}}
-            </div>
-    @enderror
-</div>
+  <div class="form-group">
+        <div class="custom-file">
+        <input type="file" name="photoAgent" class="custom-file-input @error('photoAgent') is-invalid @enderror" id="validatedCustomFile" >
+        <label class="custom-file-label" for="validatedCustomFile">Choisir une Photo de l'agent...</label>
+        @error('photoAgent')
+                <div class="invalid-feedback">
+                {{$errors->first('photoAgent')}}
+                </div>
+        @enderror
+    </div>
 </div>
 
 
@@ -603,9 +603,9 @@
 <div class="form-group">
     <label for="ville">Ville de  l'Agent :</label>
     <select class="custom-select" name= "ville"  @error('ville') is-invalid @enderror id="ville">
-            <option value="Lome">Lome</option>
-            <option value="Tesvie">Tesvie</option>
-            <option value="Kara">Kara</option>
+            <option value="Lome" @if($agent->ville == "Lome") selected @endif>Lome</option>
+            <option value="Tesvie" @if($agent->ville == "Tesvie") selected @endif>Tesvie</option>
+            <option value="Kara" @if($agent->ville == "Kara") selected @endif>Kara</option>
     </select>
     @error('ville')
             <div class="invalid-feedback">
@@ -618,9 +618,9 @@
 
 
 <div class="form-group">
-    <label for="tel">Numero de Telephone de  l'Agent :</label>
-    <input type="number" class="form-control  @error('tel') is-invalid @enderror " name="tel"
-    placeholder="Rentrer le numero de telephone de l'Agent...." value="" id="tel" value="{{old('tel') ?? $agent->tel}}">
+    <label for="tel">Numero de Telephone de l'Agent :</label>
+    <input type="tel" class="form-control  @error('tel') is-invalid @enderror " name="tel"
+    placeholder="Rentrer le nom de la marraine de l'agent...." id="tel" value="{{old('tel') ?? $agent->tel}}">
     @error('tel')
         <div class="invalid-feedback">
         {{$errors->first('tel')}}
@@ -633,15 +633,14 @@
 
 
 <div class="form-group">
-    <label for="email">Adresse Mail de  l'Agent :</label>
+    <label for="email">Adresse Mail de l'Agent : :</label>
     <input type="email" class="form-control  @error('email') is-invalid @enderror " name="email"
-    placeholder="Rentrer l'adresse mail de l'agent...." value=""  id="email" value="{{old('email') ?? $agent->email}}">
+    placeholder="Rentrer le nom de la marraine de l'agent...." id="email" value="{{old('email') ?? $agent->email}}">
     @error('email')
         <div class="invalid-feedback">
         {{$errors->first('email')}}
     </div>
     @enderror     
 </div>
-
 
 </div>

@@ -6,9 +6,9 @@
 <h1>{{$agent->typeagent->libTypeAgent}}  {{$agent->nomAgent}} {{$agent->prenomAgent}}</h1>
 
 
-@can('edit-users')  
+  
 <a href="{{route('agent.agents.edit',$agent->id)}}" class="btn btn-secondary my-3">Editer</a>
-@endcan
+
 
 
 @can('edit-users')
@@ -18,9 +18,15 @@
     @csrf
     @method('delete')
     <button type="submit" class="btn btn-danger">Supprimer</button>
+    <br>
     
 </form>
+<br>
+@if($agent->photoAgent)
+<img src="{{asset('storage/' .$agent->photoAgent)}}" alt="agent->avatar" class="img-thumbnail" width="275">
+@endif
 <hr>
+
 <p><strong>Etat : </strong>{{$agent->etat->libEtat}}</p>
 <p><strong>Sexe : </strong>{{$agent->sexeAgent}}</p>
 <p><strong>Date de Naissance : </strong>{{\Carbon\Carbon::parse($agent->dateNaisAgent)->format('d/m/Y')}}</p>
@@ -54,8 +60,5 @@
 <p><strong>Telephone : </strong>{{$agent->tel}}</p>
 <p><strong>Email : </strong>{{$agent->email}}</p>
 
-@if($agent->photoAgent)
-<img src="{{asset('storage/' .$agent->photoAgent)}}" alt="agent->avatar" class="img-thumbnail" width="200">
-@endif
 
 @endsection

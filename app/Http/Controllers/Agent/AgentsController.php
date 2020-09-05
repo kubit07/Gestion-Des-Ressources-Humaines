@@ -58,96 +58,11 @@ class AgentsController extends Controller
      */
     public function store(Request $request)
     {
+        $agent = Agent::create($this->validator());
 
-        /*$agent = new Agent; 
-
-
-        $agent->etat_id = $request->input('etats_id');
-        $agent->type_agent_id = $request->input('type_agents_id');
-        $agent->nomAgent = $request->input('nomAgent');
-        $agent->prenomAgent = $request->input('prenomAgent');
-        $agent->sexeAgent = $request->input('sexeAgent');
-        $agent->dateNaisAgent = $request->input('dateNaisAgent');
-        $agent->lieuNaisAgent = $request->input('lieuNaisAgent');
-        $agent->sitMatAgent = $request->input('sitMatAgent');
-        $agent->nationAgent = $request->input('nationAgent');
-        $agent->ethnieAgent = $request->input('ethnieAgent');
-        $agent->villageOrigineAgent = $request->input('villageOrigineAgent');
-        $agent->prefectureAgent = $request->input('prefectureAgent');
-        $agent->religionAgent = $request->input('religionAgent');
-        $agent->groupeSangAgent = $request->input('groupeSangAgent');
-        $agent->rhesusAgent = $request->input('rhesusAgent');
-        $agent->dateEmbauche = $request->input('dateEmbauche');
-        $agent->numDecision = $request->input('numDecision');
-        $agent->dateDecision = $request->input('dateDecision');
-        $agent->numCNSS = $request->input('numCNSS');
-        $agent->numAllocation = $request->input('numAllocation');
-        $agent->langue = $request->input('langue');
-        $agent->loisir = $request->input('loisir');
-        $agent->dateRetraite = $request->input('dateRetraite');
-        $agent->dateBapteme = $request->input('dateBapteme');
-        $agent->pasteurBapteme = $request->input('pasteurBapteme');
-        $agent->dateConfirmation = $request->input('dateConfirmation');
-        $agent->lieuConfirmation = $request->input('lieuConfirmation');
-        $agent->pasteurConfirm = $request->input('pasteurConfirm');
-        $agent->nomParain = $request->input('nomParain');
-        $agent->nomMarraine = $request->input('nomMarraine');
-        $agent->quartier = $request->input('quartier');
-        $agent->rue = $request->input('rue');
-        $agent->ville = $request->input('ville');
-        $agent->tel = $request->input('tel');
-        $agent->email = $request->input('email');
-     
-        
         $this->storeImage($agent);
-        $agent->save();
 
-        return back();*/
-
-       // $agent = Agent::create($this->validator());
-       
-       $validatedData = $request->validate([
-
-        'nomAgent' => 'required|min:5',
-        'prenomAgent' => 'required|min:5',
-        'sexeAgent' => 'required',
-        'type_agent_id'  => 'required|integer',
-        'etat_id' => 'required|integer',
-        'dateNaisAgent' => 'required',
-        'lieuNaisAgent' => 'required',
-        'sitMatAgent' => 'required',
-        'nationAgent' => 'required',
-        'ethnieAgent' => 'required',
-        'villageOrigineAgent' => 'required',
-        'prefectureAgent' => 'required',
-        'religionAgent' => 'required',
-        'groupeSangAgent' => 'required',
-        'rhesusAgent' => 'required',
-        'dateEmbauche' => 'required',
-        'numDecision' => 'required',
-        'dateDecision' => 'required',
-        'numCNSS' => 'required',
-        'numAllocation' => 'required',
-        'langue' => 'required',
-        'loisir' => 'required|min:5',
-        'dateRetraite' => 'required',
-        'dateBapteme' => 'required',
-        'pasteurBapteme' => 'required|min:5',
-        'dateConfirmtion' => 'required',
-        'lieuConfirmation' => 'required|min:5',
-        'pasteurConfirm' => 'required|min:5',
-        'nomParain' => 'required|min:5',
-        'nomMarraine' => 'required|min:5',
-        'photoAgent' => 'sometimes|image|max:5000',
-        'quartier' => 'required|min:4',
-        'rue' => 'required|min:5',
-        'ville' => 'required',
-        'tel' => 'required',
-        'email' => 'required|email',
-
-       ]);
-
-       
+        return redirect()->route('agent.agents.index')->with('message', 'Enregistrement Effectué avec succès');
 
     }
 
@@ -190,7 +105,14 @@ class AgentsController extends Controller
      */
     public function update(Request $request, Agent $agent)
     {
-        //
+        
+        $agent->update($this->validator());
+
+        $this->storeImage($agent);
+
+
+        return redirect('agent/agents/' .$agent->id)->with('message', 'Modification Effectué avec succès');
+
     }
 
     /**
@@ -206,7 +128,7 @@ class AgentsController extends Controller
             return redirect()->route('admin.users.index');
         }
         $agent->delete();
-        return redirect()->route('agent.agents.index');
+        return redirect()->route('agent.agents.index')->with('message', 'Suppression Effectué avec succès');;
     }
 
     private function storeImage(Agent $agent){
@@ -214,23 +136,24 @@ class AgentsController extends Controller
         if (request('photoAgent')){
 
             $agent->update([
-
+ 
                 'photoAgent'=> request('photoAgent')->store('avatars','public')
             ]);
         }
 
     }
 
-    private function validator(){
-        
+    private function validator() {
+
         return request()->validate([
-            'nomAgent' => 'required|min:5',
-            'prenomAgent' => 'required|min:5',
+
+            'nomAgent' => 'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
+            'prenomAgent' =>'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
             'sexeAgent' => 'required',
             'type_agent_id'  => 'required|integer',
             'etat_id' => 'required|integer',
-            'dateNaisAgent' => 'required',
-            'lieuNaisAgent' => 'required',
+            'dateNaisAgent' => 'required|before:today-21years|after:today-120years',
+            'lieuNaisAgent' => 'required|min:3|max:60',
             'sitMatAgent' => 'required',
             'nationAgent' => 'required',
             'ethnieAgent' => 'required',
@@ -240,26 +163,26 @@ class AgentsController extends Controller
             'groupeSangAgent' => 'required',
             'rhesusAgent' => 'required',
             'dateEmbauche' => 'required',
-            'numDecision' => 'required',
+            'numDecision' => 'required|numeric',
             'dateDecision' => 'required',
-            'numCNSS' => 'required',
-            'numAllocation' => 'required',
+            'numCNSS' => 'required|numeric',
+            'numAllocation' => 'required|numeric',
             'langue' => 'required',
-            'loisir' => 'required|min:5',
+            'loisir' => 'required|min:3|string|max:50',
             'dateRetraite' => 'required',
             'dateBapteme' => 'required',
-            'pasteurBapteme' => 'required|min:5',
-            'dateConfirmtion' => 'required',
-            'lieuConfirmation' => 'required|min:5',
-            'pasteurConfirm' => 'required|min:5',
-            'nomParain' => 'required|min:5',
-            'nomMarraine' => 'required|min:5',
+            'pasteurBapteme' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'dateConfirmation' => 'required',
+            'lieuConfirmation' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'pasteurConfirm' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'nomParain' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'nomMarraine' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
             'photoAgent' => 'sometimes|image|max:5000',
-            'quartier' => 'required|min:4',
-            'rue' => 'required|min:5',
+            'quartier' => 'required|min:3|max:40|',
+            'rue' => 'required|min:3|max:40',
             'ville' => 'required',
-            'tel' => 'required',
-            'email' => 'required|email',
+            'tel' => 'required|numeric',
+            'email' => 'required|email|max:50'
 
         ]);
 

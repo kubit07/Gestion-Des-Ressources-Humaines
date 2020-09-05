@@ -114,7 +114,12 @@
             </div>
         </nav>
 
-        <main class="py-4 container ">
+        <main class="py-4 container">
+            @if (session()->has('message'))
+                <div class="alert alert-success" role="alert">
+                    {{ session()->get('message')}}
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

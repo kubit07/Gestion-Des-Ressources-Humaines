@@ -49,7 +49,7 @@ class AjouterAgentRequest extends FormRequest
             'dateRetraite' => 'required',
             'dateBapteme' => 'required',
             'pasteurBapteme' => 'required|min:5',
-            'dateConfirmtion' => 'required',
+            'dateConfirmation' => 'required',
             'lieuConfirmation' => 'required|min:5',
             'pasteurConfirm' => 'required|min:5',
             'nomParain' => 'required|min:5',
