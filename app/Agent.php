@@ -55,5 +55,11 @@ class Agent extends Model
             return $this->hasMany('App\PersonneAPrevenir');
     }
 
+    public function scopeStatus($query){
+        
+        return $query->where('status',1)->get();
+
+    }
+
 
 }

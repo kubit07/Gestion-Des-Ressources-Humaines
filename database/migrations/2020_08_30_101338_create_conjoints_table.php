@@ -15,6 +15,7 @@ class CreateConjointsTable extends Migration
     {
         Schema::create('conjoints', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('agent_id');
             $table->timestamps();
             $table->string('nomConj');
             $table->string('prenomConj');

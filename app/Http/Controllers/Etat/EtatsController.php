@@ -98,6 +98,7 @@ class EtatsController extends Controller
 
             return redirect()->route('admin.users.index');
         }
+
         $etat->delete();
 
         return redirect()->route('etat.etats.index')->with('message', 'Suppression Effectué avec succès');

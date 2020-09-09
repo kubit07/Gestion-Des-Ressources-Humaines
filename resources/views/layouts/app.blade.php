@@ -38,7 +38,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand navbar-dark bg-dark" style="font-variant: small-caps; font-weight: bold;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -56,19 +56,19 @@
                         </li>
 
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{route('agent.agents.index')}}">Recrutement</a>
+                                    <a class="nav-link active" href="{{route('agent.agents.index')}}">Recrutement</a>
                         </li>
 
                         <li class="nav-item">
-                                    <a class="nav-link" href="/">Affectation</a>
+                                    <a class="nav-link active" href="/">Affectation</a>
                         </li>
                             
                         <li class="nav-item">
-                                    <a class="nav-link" href="/">Mutation</a>
+                                    <a class="nav-link active" href="/">Mutation</a>
                         </li>
                             
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{route('home')}}">Panel</a>
+                                    <a class="nav-link active" href="{{route('home')}}">Panel</a>
                         </li>
 
                     </ul>
@@ -78,11 +78,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link active" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -116,7 +116,7 @@
 
         <main class="py-4 container">
             @if (session()->has('message'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-danger" role="alert">
                     {{ session()->get('message')}}
                 </div>
             @endif

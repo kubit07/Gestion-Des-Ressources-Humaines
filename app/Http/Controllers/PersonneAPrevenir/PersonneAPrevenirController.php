@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\PersonneAPrevenir;
 
-use App\Http\Controllers\Controller;
+use App\Agent;
 use App\PersonneAPrevenir;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class PersonneAPrevenirController extends Controller
 {
@@ -13,9 +15,19 @@ class PersonneAPrevenirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct(){
+
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
-        //
+        
+        $pps = PersonneAPrevenir::all();
+
+        return view('PersonneAPrevenir.index',compact('pps'));
     }
 
     /**
@@ -25,7 +37,14 @@ class PersonneAPrevenirController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+        $agents = Agent::all();
+        $personne_a_prevenirs = new PersonneAPrevenir();
+        return view('personneaprevenir.create',compact('agents','personne_a_prevenirs')); 
+
     }
 
     /**
@@ -36,7 +55,9 @@ class PersonneAPrevenirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $personne_a_prevenir = PersonneAPrevenir::create($this->validator());
+
+        return redirect()->route('personneaprevenir.personneaprevenir.index')->with('message', 'Enregistrement Effectué avec succès');
     }
 
     /**
@@ -81,6 +102,26 @@ class PersonneAPrevenirController extends Controller
      */
     public function destroy(PersonneAPrevenir $personneAPrevenir)
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+
+        $personneAPrevenir->delete();
+
+        return redirect()->route('personneaprevenir.personneaprevenir.index')->with('message', 'Suppression Effectué avec succès');
     }
+
+
+    private function validator() {
+
+        return request()->validate([
+
+            'nomPAP' => 'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
+            'numPAP' =>  'required|regex:/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m',
+            'agent_id'  => 'required|integer'
+        ]);
+        
+    }
+
 }

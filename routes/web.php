@@ -31,6 +31,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function(){
 
     Route::resource('agents','AgentsController');
+    Route::get('/pasteurs','AgentsController@pasteurs')->name('agents.pasteurs');
+    Route::get('/Catéchistes','AgentsController@Catéchistes')->name('agents.Catéchistes');
+    Route::get('/valides','AgentsController@valides')->name('agents.valides');
+    Route::get('/decedes','AgentsController@decedes')->name('agents.decedes');
 
 });
 
@@ -38,6 +42,21 @@ Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function(){
 Route::namespace('Etat')->prefix('etat')->name('etat.')->group(function(){
 
     Route::resource('etats','EtatsController');
+
+});
+
+
+
+Route::namespace('PersonneAPrevenir')->prefix('personneaprevenir')->name('personneaprevenir.')->group(function(){
+
+    Route::resource('personneaprevenir','PersonneAPrevenirController');
+
+});
+
+
+Route::namespace('Conjoint')->prefix('conjoint')->name('conjoint.')->group(function(){
+
+    Route::resource('conjoint','ConjointController');
 
 });
 

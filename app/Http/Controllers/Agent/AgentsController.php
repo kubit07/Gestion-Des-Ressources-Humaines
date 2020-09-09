@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AjouterAgentRequest;
 use Illuminate\Support\Facades\Gate;
+use App\PersonneAPrevenir;
 
 class AgentsController extends Controller
 {
@@ -27,7 +28,9 @@ class AgentsController extends Controller
 
     public function index()
     {
-        $agents = Agent::all();
+        $agents = Agent::orderBy('nomAgent', 'asc')->get();
+
+        $agents = Agent::with('etat','typeAgent')->paginate(5);
 
         return view('agent.index',compact('agents'));
     }
@@ -43,10 +46,11 @@ class AgentsController extends Controller
 
             return redirect()->route('admin.users.index');
         }
+        $valide = true;
         $etats = Etat::all();
         $type_agents = TypeAgent::all();
         $agent = new Agent();
-        return view('agent.create',compact('etats','agent','type_agents')); 
+        return view('agent.create',compact('etats','agent','type_agents','valide')); 
 
     }
 
@@ -87,12 +91,13 @@ class AgentsController extends Controller
      */
     public function edit(Agent $agent)
     {
+        $valide = false;
 
         $etats = Etat::all();
         
         $type_agents = TypeAgent::all();
 
-        return view('agent.edit',compact('agent','etats','type_agents'));
+        return view('agent.edit',compact('agent','etats','type_agents','valide'));
 
     }
 
@@ -128,7 +133,7 @@ class AgentsController extends Controller
             return redirect()->route('admin.users.index');
         }
         $agent->delete();
-        
+
         return redirect()->route('agent.agents.index')->with('message', 'Suppression Effectué avec succès');
     }
 
@@ -182,10 +187,43 @@ class AgentsController extends Controller
             'quartier' => 'required|min:3|max:40|',
             'rue' => 'required|min:3|max:40',
             'ville' => 'required',
-            'tel' => 'required|numeric',
+            'tel' => 'required|regex:/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m',
             'email' => 'required|email|max:50'
 
         ]);
+        
+    }
+
+    public function pasteurs()  {
+
+        $agents = Agent::where('type_agent_id',1)->get();
+
+        return view('agent.pasteur',compact('agents'));
+
+    }
+
+    public function Catéchistes()  {
+
+        $agents = Agent::where('type_agent_id',2)->get();
+
+        return view('agent.Catéchistes',compact('agents'));
+
+    }
+
+    
+    public function valides()  {
+
+        $agents = Agent::where('etat_id',1)->get();
+
+        return view('etat.valide',compact('agents'));
+
+    }
+    
+    public function decedes()  {
+
+        $agents = Agent::where('etat_id',3)->get();
+
+        return view('etat.valide',compact('agents'));
 
     }
 

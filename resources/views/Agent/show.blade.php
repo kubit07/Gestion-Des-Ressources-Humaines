@@ -7,12 +7,14 @@
 
 
   
-<a href="{{route('agent.agents.edit',$agent->id)}}" class="btn btn-secondary my-3">Editer</a>
+<a href="{{route('agent.agents.edit',$agent->id)}}" class="btn btn-warning my-3">Editer</a>
 
 
 
 @can('edit-users')
 <form action="{{route('agent.agents.destroy',$agent->id)}}" method="post" style="display: inline;">
+    <a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3">Ajouter Conjoint(e)</a>
+<a href="{{route('personneaprevenir.personneaprevenir.create')}}" class="btn btn-success my-3">Ajouter Personne A Prevenir</a>
 @endcan
 
     @csrf
@@ -27,6 +29,8 @@
 @endif
 <hr>
 
+<p><strong>Date de Recrutement : </strong>{{\Carbon\Carbon::parse($agent->created_at)->format('d/m/Y H:i:s')}}</p>
+<p><strong>Derniere date de Modification : </strong>{{\Carbon\Carbon::parse($agent->updated_at)->format('d/m/Y H:i:s')}}</p>
 <p><strong>Etat : </strong>{{$agent->etat->libEtat}}</p>
 <p><strong>Sexe : </strong>{{$agent->sexeAgent}}</p>
 <p><strong>Date de Naissance : </strong>{{\Carbon\Carbon::parse($agent->dateNaisAgent)->format('d/m/Y')}}</p>
@@ -59,6 +63,4 @@
 <p><strong>Ville : </strong>{{$agent->ville}}</p>
 <p><strong>Telephone : </strong>{{$agent->tel}}</p>
 <p><strong>Email : </strong>{{$agent->email}}</p>
-
-
 @endsection

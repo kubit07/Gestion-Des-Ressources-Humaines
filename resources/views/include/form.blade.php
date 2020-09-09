@@ -65,7 +65,7 @@
         <select class="custom-select" name="etat_id"  @error('etat_id') is-invalid @enderror
         id="etat_id">
         @foreach($etats as $etat)
-        <option value="{{ $etat->id }}" {{$agent->etat_id == $etat->id ? 'selected' : ''}}> {{$etat->libEtat}} </option>
+        <option value="{{ $etat->id }}" {{$agent->etat_id == $etat->id ? 'selected' : ''}} @if($valide == "true") selected disabled hidden @endif> {{$etat->libEtat}}</option>
         @endforeach
         </select>
         @error('etats_id')
@@ -110,12 +110,16 @@
 
 <div class="form-group">
     <label for="Situation">Situation Matrimoniale :</label>
+
     <input type="radio" name="sitMatAgent" value="Celibatiare" id="Situation" {{$agent->sitMatAgent == "Celibatiare" ? "checked" : ""}} />
     <label for="Situation">Celibatiare</label>
-    <input type="radio" name="sitMatAgent" value="Marie" id="Situation" {{$agent->sitMatAgent == "Mariée" ? "checked" : ""}} />
+
+    <input type="radio" name="sitMatAgent" value="Mariée" id="Situation" {{$agent->sitMatAgent == "Mariée" ? "checked" : ""}} />
     <label for="Situation">Mariée</label>
+
     <input type="radio" name="sitMatAgent" value="Veuve" id="Situation" {{$agent->sitMatAgent == "Veuve" ? "checked" : ""}}/>
     <label for="Situation">Veuve</label>
+
     <input type="radio" name="sitMatAgent" value="Divorcée" id="Situation"  {{$agent->sitMatAgent == "Divorcée" ? "checked" : ""}}/>
     <label for="Situation">Divorcée</label>
 </div>
@@ -633,7 +637,7 @@
 
 
 <div class="form-group">
-    <label for="email">Adresse Mail de l'Agent : :</label>
+    <label for="email">Adresse Mail de l'Agent :</label>
     <input type="email" class="form-control  @error('email') is-invalid @enderror " name="email"
     placeholder="Rentrer le nom de la marraine de l'agent...." id="email" value="{{old('email') ?? $agent->email}}">
     @error('email')
