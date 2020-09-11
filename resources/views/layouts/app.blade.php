@@ -38,7 +38,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-dark bg-dark" style="font-variant: small-caps; font-weight: bold;">
+        <nav class="navbar navbar-expand navbar-dark bg-dark" style="font-family: Viner Hand ITC; font-weight: bold;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

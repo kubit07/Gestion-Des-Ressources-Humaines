@@ -25,9 +25,9 @@ class PersonneAPrevenirController extends Controller
     public function index()
     {
         
-        $pps = PersonneAPrevenir::all();
+        $personneAPrevenirs = PersonneAPrevenir::all();
 
-        return view('PersonneAPrevenir.index',compact('pps'));
+        return view('PersonneAPrevenir.index')->with('personneAPrevenirs',$personneAPrevenirs);
     }
 
     /**

@@ -3,6 +3,8 @@
 @section('content')
 <h1 style="font-family: Monotype Corsiva">Liste des Pasteurs</h1>
 
+<hr>
+
     <ul>
 
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
@@ -38,5 +40,7 @@
                         </tbody>
               </table> 
     </ul>
+    
+<hr>
 
 @endsection

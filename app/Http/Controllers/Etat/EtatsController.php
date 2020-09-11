@@ -108,7 +108,7 @@ class EtatsController extends Controller
 
         return request()->validate([
 
-            'libEtat' => 'required|min:3|max:20|regex:/^[a-zA-Z_ ]+$/u'
+            'libEtat' => 'required|min:3|max:20'
         ]);
     }
 }

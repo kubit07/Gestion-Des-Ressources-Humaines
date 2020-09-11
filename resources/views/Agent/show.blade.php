@@ -3,17 +3,17 @@
 
 @section('content')
 
-<h1>{{$agent->typeagent->libTypeAgent}}  {{$agent->nomAgent}} {{$agent->prenomAgent}}</h1>
+<h3 style="font-family: Monotype Corsiva; font-weight:1.2em;">{{$agent->typeagent->libTypeAgent}}  {{$agent->nomAgent}} {{$agent->prenomAgent}}</h3>
 
 
   
-<a href="{{route('agent.agents.edit',$agent->id)}}" class="btn btn-warning my-3">Editer</a>
+<a href="{{route('agent.agents.edit',$agent->id)}}" class="btn btn-warning my-3" style="display: inline; font-family: lucida calligraphy;">Editer</a>
 
 
 
 @can('edit-users')
-<form action="{{route('agent.agents.destroy',$agent->id)}}" method="post" style="display: inline;">
-    <a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3">Ajouter Conjoint(e)</a>
+<form action="{{route('agent.agents.destroy',$agent->id)}}" method="post" style="display: inline; font-family: lucida calligraphy;">
+<a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3">Ajouter Conjoint(e)</a>
 <a href="{{route('personneaprevenir.personneaprevenir.create')}}" class="btn btn-success my-3">Ajouter Personne A Prevenir</a>
 @endcan
 
@@ -29,8 +29,11 @@
 @endif
 <hr>
 
-<p><strong>Date de Recrutement : </strong>{{\Carbon\Carbon::parse($agent->created_at)->format('d/m/Y H:i:s')}}</p>
+
+<div style="font-family: Monotype Corsiva; font-size: 1.2em;">
+<p><strong>Date d'Embauche : {{\Carbon\Carbon::parse($agent->created_at)->format('d/m/Y H:i:s')}}</strong></p>
 <p><strong>Derniere date de Modification : </strong>{{\Carbon\Carbon::parse($agent->updated_at)->format('d/m/Y H:i:s')}}</p>
+<p><strong>Date de Changement d'Etat : </strong>{{($agent->dateEtat)}}</p>
 <p><strong>Etat : </strong>{{$agent->etat->libEtat}}</p>
 <p><strong>Sexe : </strong>{{$agent->sexeAgent}}</p>
 <p><strong>Date de Naissance : </strong>{{\Carbon\Carbon::parse($agent->dateNaisAgent)->format('d/m/Y')}}</p>
@@ -43,7 +46,6 @@
 <p><strong>Religion : </strong>{{$agent->religionAgent}}</p>
 <p><strong>Groupe Sanguin : </strong>{{$agent->groupeSangAgent}}</p>
 <p><strong>Rhesus Sanguin : </strong>{{$agent->rhesusAgent}}</p>
-<p><strong>Date d'embauche : </strong>{{\Carbon\Carbon::parse($agent->dateEmbauche)->format('d/m/Y')}}</p>
 <p><strong>Numero de Decision : </strong>{{$agent->numDecision}}</p>
 <p><strong>Date de Decision : </strong>{{ \Carbon\Carbon::parse($agent->dateDecision)->format('d/m/Y')}}</p>
 <p><strong>Numero de CNSS : </strong>{{$agent->numCNSS}}</p>
@@ -63,4 +65,6 @@
 <p><strong>Ville : </strong>{{$agent->ville}}</p>
 <p><strong>Telephone : </strong>{{$agent->tel}}</p>
 <p><strong>Email : </strong>{{$agent->email}}</p>
+</div>
+<hr>
 @endsection

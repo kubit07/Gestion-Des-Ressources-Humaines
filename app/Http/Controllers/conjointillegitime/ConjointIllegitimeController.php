@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Conjoint;
+namespace App\Http\Controllers\conjointillegitime;
 
 use App\Agent;
-use App\Conjoint;
-use Illuminate\Http\Request;
+use App\ConjointIllegitime;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class ConjointController extends Controller
+class ConjointIllegitimeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function __construct(){
 
         $this->middleware('auth');
@@ -25,9 +25,9 @@ class ConjointController extends Controller
 
     public function index()
     {
-        $conjoints = Conjoint::with('agent')->paginate(4);
+        $conjointIllegitimes = ConjointIllegitime::with('agent')->paginate(4);
         
-        return view('Conjoint(e).index',compact('conjoints'));
+        return view('ConjointIllegitime.index',compact('conjointIllegitimes'));
     }
 
     /**
@@ -41,9 +41,12 @@ class ConjointController extends Controller
 
             return redirect()->route('admin.users.index');
         }
+
         $agents = Agent::all();
-        $conjoint = new Conjoint();
-        return view('Conjoint(e).create',compact('agents','conjoint')); 
+
+        $conjointIllegitime = new ConjointIllegitime();
+
+        return view('ConjointIllegitime.create',compact('agents','conjointIllegitime')); 
     }
 
     /**
@@ -54,66 +57,59 @@ class ConjointController extends Controller
      */
     public function store(Request $request)
     {
-        $conjoint = Conjoint::create($this->validator());
+        $conjointIllegitime = ConjointIllegitime::create($this->validator());
 
-        return redirect()->route('conjoint.conjoint.index')->with("message', 'Enregistrement d'un Etat Effectué avec succès");
+        return redirect()->route('conjointillegitime.conjointillegitime.index')->with("message', 'Enregistrement d'un Etat Effectué avec succès");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Conjoint  $conjoint
+     * @param  \App\ConjointIllegitime  $conjointIllegitime
      * @return \Illuminate\Http\Response
      */
-    public function show(Conjoint $conjoint)
+    public function show(ConjointIllegitime $conjointIllegitime)
     {
-        return view('Conjoint(e).show',compact('conjoint'));
+        return view('ConjointIllegitime.show',compact('conjointIllegitime'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Conjoint  $conjoint
+     * @param  \App\ConjointIllegitime  $conjointIllegitime
      * @return \Illuminate\Http\Response
      */
-    public function edit(Conjoint $conjoint)
+    public function edit(ConjointIllegitime $conjointIllegitime)
     {
-
-        $agents = Agent::all();
-
-        return view('Conjoint(e).edit',compact('agents','conjoint'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Conjoint  $conjoint
+     * @param  \App\ConjointIllegitime  $conjointIllegitime
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Conjoint $conjoint)
+    public function update(Request $request, ConjointIllegitime $conjointIllegitime)
     {
-         
-        $conjoint->update($this->validator());
- 
-        return redirect()->route('conjoint.conjoint.index')->with('message', 'Modification Effectué avec succès');
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Conjoint  $conjoint
+     * @param  \App\ConjointIllegitime  $conjointIllegitime
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Conjoint $conjoint)
+    public function destroy(ConjointIllegitime $conjointIllegitime)
     {
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
         }
 
-        $conjoint->delete();
+        $conjointIllegitime->delete();
 
         return redirect()->route('conjoint.conjoint.index')->with('message', 'Suppression Effectué avec succès');
     }
@@ -132,21 +128,10 @@ class ConjointController extends Controller
             'villageVilleConj' => 'required',
             'prefectConj' => 'required',
             'ethnieConj' => 'required',
-            'dateMariageCivil' => 'required',
-            'dateMariageReli' => 'required',
-            'dateMariageCoutu' => 'required',
-            'dateDece' => 'sometimes',
-
+            'MotifRelation' => 'required',
+            
         ]);
         
-    }
-
-    public function decedes()  {
-
-        $conjoints = Conjoint::where('dateDece', '!=', 'NULL')->get();
-
-        return view('Conjoint(e).decede',compact('conjoints'));
-
     }
 
 }

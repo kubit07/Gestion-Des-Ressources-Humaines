@@ -8,8 +8,10 @@
 <a href="{{route('etat.etats.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">  Liste des Etats<a/>&nbsp;
 <a href="{{route('agent.agents.pasteurs')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">  Liste des Pasteurs<a/>&nbsp;
 <a href="{{route('agent.agents.Catéchistes')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">  Liste des Catéchistes<a/>&nbsp;
-<a href="{{route('conjoint.conjoint.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjoint(e)s</a>&nbsp;
+<a href="{{route('conjoint.conjoint.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjoint(e)s Legitimes</a>&nbsp;
+<a href="{{route('conjointillegitime.conjointillegitime.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjointllegitimes</a>&nbsp;
 <a href="{{route('personneaprevenir.personneaprevenir.index')}}" class="btn btn-success my-3" style="font-family: Monotype Corsiva;"> Personne A Prevenir</a>
+<hr>
 @endcan
 
 
@@ -28,7 +30,7 @@
                             <th scope="col">Type Agent</th>
                             <th scope="col">Nationalite</th>
                             <th scope="col">Telephone</th>
-                            <th scope="col">Date de Recrutement</th>
+                            <th scope="col">Date d'Embauche</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,6 +52,7 @@
                         </tbody>
               </table> 
     </ul>
+    <hr>
 
     <div class="row d-flex justify-content-center">
         {{$agents->links()}}

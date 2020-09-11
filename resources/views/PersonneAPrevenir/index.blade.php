@@ -6,6 +6,10 @@
 @can('edit-users')  
 <a href="{{route('personneaprevenir.personneaprevenir.create')}}" class="btn btn-success my-3" style="font-family: Monotype Corsiva">Ajouter Personne A Prevenir<a/>
 @endcan
+
+<hr>
+    <div style="font-family: pristina; font-weight: bold; font-size: 1.3em;">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -23,21 +27,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pps as $pp)
+                            @foreach ($personneAPrevenirs as $personneAPrevenir)
                           <tr>
-                                <th scope="row">{{$pp->id}}</th>
-                                <td>{{$pp->nomPAP}}</td>
-                                <td>{{$pp->numPAP}}</td>
-                                <td>{{$pp->agent->nomAgent}}</td>
+                                <th scope="row">{{$personneAPrevenir->id}}</th>
+                                <td>{{$personneAPrevenir->nomPAP}}</td>
+                                <td>{{$personneAPrevenir->numPAP}}</td>
+                                <td >{{$personneAPrevenir->agent->nomAgent}}</td>
                                 <td>
                                     @can('edit-users')
-                                    <form action="{{route('personneaprevenir.personneaprevenir.destroy',$pp->id)}}" method="post" style="display: inline;">
+                                    <form action="{{route('personneaprevenir.personneaprevenir.destroy',$personneAPrevenir->id)}}" method="post" style="display: inline;">
                                     @endcan
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Supprimer</button>
                                         <br>
-                                        
                                     </form>
                                 </td>
                           </tr>
@@ -49,4 +52,5 @@
         </div>
     </div>
 </div>
+<hr>
 @endsection

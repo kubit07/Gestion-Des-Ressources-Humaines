@@ -3,6 +3,7 @@
 @section('content')
 <h1 style="font-family: Monotype Corsiva">Liste des Agents Valides</h1>
 
+<hr>
     <ul>
 
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
@@ -38,5 +39,7 @@
                         </tbody>
               </table> 
     </ul>
+    
+<hr>
 
 @endsection

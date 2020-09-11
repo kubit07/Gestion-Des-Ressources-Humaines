@@ -57,6 +57,14 @@ Route::namespace('PersonneAPrevenir')->prefix('personneaprevenir')->name('person
 Route::namespace('Conjoint')->prefix('conjoint')->name('conjoint.')->group(function(){
 
     Route::resource('conjoint','ConjointController');
+    Route::get('/decedes','ConjointController@decedes')->name('conjoints.decedes');
+
+});
+
+
+Route::namespace('Conjointillegitime')->prefix('conjointillegitime')->name('conjointillegitime.')->group(function(){
+
+    Route::resource('conjointillegitime','ConjointIllegitimeController');
 
 });
 

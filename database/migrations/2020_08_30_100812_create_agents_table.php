@@ -31,7 +31,6 @@ class CreateAgentsTable extends Migration
             $table->string('religionAgent');
             $table->string('groupeSangAgent');
             $table->string('rhesusAgent');
-            $table->date('dateEmbauche');
             $table->integer('numDecision');
             $table->date('dateDecision');
             $table->integer('numCNSS');
@@ -52,6 +51,7 @@ class CreateAgentsTable extends Migration
             $table->string('ville');
             $table->integer('tel');
             $table->string('email');
+            $table->date('dateEtat')->nullable();
             
         });
 

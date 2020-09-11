@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="font-family: pristina; font-weight: bold; font-size: 1.3em;">
                 
 @can('edit-users')  
 <a href="{{route('etat.etats.create')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Nouveau Etat<a/>&nbsp;
 <a href="{{route('agent.agents.valides')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Liste des Valides<a/>&nbsp;
 <a href="{{route('agent.agents.decedes')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Liste des Décédés<a/>
 @endcan
+<hr>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -44,5 +45,6 @@
             </div>
         </div>
     </div>
+<hr>
 </div>
 @endsection

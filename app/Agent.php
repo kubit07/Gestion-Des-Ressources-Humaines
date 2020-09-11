@@ -10,10 +10,10 @@ class Agent extends Model
         protected $fillable = [
         'nomAgent','prenomAgent','sexeAgent','type_agent_id','etat_id','dateNaisAgent',
         'lieuNaisAgent','sitMatAgent','nationAgent','ethnieAgent','villageOrigineAgent','prefectureAgent',
-        'religionAgent','groupeSangAgent','rhesusAgent','dateEmbauche','numDecision','dateDecision',
+        'religionAgent','groupeSangAgent','rhesusAgent','numDecision','dateDecision',
         'numCNSS','numAllocation','langue','loisir','dateRetraite','dateBapteme','pasteurBapteme',
         'dateConfirmation','lieuConfirmation','pasteurConfirm','nomParain','nomMarraine','photoAgent',
-        'quartier','rue','ville','tel','email'
+        'quartier','rue','ville','tel','email','dateEtat',
         ];
     
     protected $guarded = [];
@@ -21,12 +21,12 @@ class Agent extends Model
 
     public function etat()
     {
-        return $this->belongsTo('App\Etat');
+            return $this->belongsTo('App\Etat');
     }
 
     public function typeAgent()
     {
-        return $this->belongsTo('App\TypeAgent');
+            return $this->belongsTo('App\TypeAgent');
     }
 
     
@@ -57,8 +57,13 @@ class Agent extends Model
 
     public function scopeStatus($query){
         
-        return $query->where('status',1)->get();
+            return $query->where('status',1)->get();
 
+    }
+
+    public function ConjointIllegitimes()
+    {
+            return $this->hasMany('App\ConjointIllegitime');
     }
 
 

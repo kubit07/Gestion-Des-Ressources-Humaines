@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Agent;
 use App\Etat;
 use App\Agent;
 use App\TypeAgent;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\AjouterAgentRequest;
-use Illuminate\Support\Facades\Gate;
 use App\PersonneAPrevenir;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\AjouterAgentRequest;
 
 class AgentsController extends Controller
 {
@@ -46,11 +47,10 @@ class AgentsController extends Controller
 
             return redirect()->route('admin.users.index');
         }
-        $valide = true;
         $etats = Etat::all();
         $type_agents = TypeAgent::all();
         $agent = new Agent();
-        return view('agent.create',compact('etats','agent','type_agents','valide')); 
+        return view('agent.create',compact('etats','agent','type_agents')); 
 
     }
 
@@ -91,13 +91,11 @@ class AgentsController extends Controller
      */
     public function edit(Agent $agent)
     {
-        $valide = false;
-
         $etats = Etat::all();
         
         $type_agents = TypeAgent::all();
 
-        return view('agent.edit',compact('agent','etats','type_agents','valide'));
+        return view('agent.edit',compact('agent','etats','type_agents'));
 
     }
 
@@ -111,11 +109,17 @@ class AgentsController extends Controller
     public function update(Request $request, Agent $agent)
     {
         
-        $agent->update($this->validator());
+        $agent->update($this->validatorUpadte());
 
         $this->storeImage($agent);
+ 
+        /*
+        if ($this->etat_id != 3){
+             
+            $this->dateEtat = "ok";
 
-
+        }
+        */
         return redirect('agent/agents/' .$agent->id)->with('message', 'Modification Effectué avec succès');
 
     }
@@ -157,7 +161,7 @@ class AgentsController extends Controller
             'prenomAgent' =>'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
             'sexeAgent' => 'required',
             'type_agent_id'  => 'required|integer',
-            'etat_id' => 'required|integer',
+            'etat_id' => 'required|integer|between:1,1',
             'dateNaisAgent' => 'required|before:today-21years|after:today-120years',
             'lieuNaisAgent' => 'required|min:3|max:60',
             'sitMatAgent' => 'required',
@@ -168,7 +172,6 @@ class AgentsController extends Controller
             'religionAgent' => 'required',
             'groupeSangAgent' => 'required',
             'rhesusAgent' => 'required',
-            'dateEmbauche' => 'required',
             'numDecision' => 'required|numeric',
             'dateDecision' => 'required',
             'numCNSS' => 'required|numeric',
@@ -188,7 +191,54 @@ class AgentsController extends Controller
             'rue' => 'required|min:3|max:40',
             'ville' => 'required',
             'tel' => 'required|regex:/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m',
-            'email' => 'required|email|max:50'
+            'email' => 'required|email|max:50',
+            'dateEtat' => 'sometimes',
+
+        ]);
+        
+    }
+
+    private function validatorUpadte() {
+
+        return request()->validate([
+
+            'nomAgent' => 'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
+            'prenomAgent' =>'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
+            'sexeAgent' => 'required',
+            'type_agent_id'  => 'required|integer',
+            'etat_id' => 'required|integer',
+            'dateNaisAgent' => 'required|before:today-21years|after:today-120years',
+            'lieuNaisAgent' => 'required|min:3|max:60',
+            'sitMatAgent' => 'required',
+            'nationAgent' => 'required',
+            'ethnieAgent' => 'required',
+            'villageOrigineAgent' => 'required',
+            'prefectureAgent' => 'required',
+            'religionAgent' => 'required',
+            'groupeSangAgent' => 'required',
+            'rhesusAgent' => 'required',
+            'numDecision' => 'required|numeric',
+            'dateDecision' => 'required',
+            'numCNSS' => 'required|numeric',
+            'numAllocation' => 'required|numeric',
+            'langue' => 'required',
+            'loisir' => 'required|min:3|string|max:50',
+            'dateRetraite' => 'required',
+            'dateBapteme' => 'required',
+            'pasteurBapteme' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'dateConfirmation' => 'required',
+            'lieuConfirmation' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'pasteurConfirm' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'nomParain' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'nomMarraine' => 'required|min:5|max:50|regex:/^[a-zA-Z_ ]+$/u',
+            'photoAgent' => 'sometimes|image|max:5000',
+            'quartier' => 'required|min:3|max:40|',
+            'rue' => 'required|min:3|max:40',
+            'ville' => 'required',
+            'tel' => 'required|regex:/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m',
+            'email' => 'required|email|max:50',
+            'dateEtat' => 'sometimes',
+            
 
         ]);
         
@@ -223,7 +273,7 @@ class AgentsController extends Controller
 
         $agents = Agent::where('etat_id',3)->get();
 
-        return view('etat.valide',compact('agents'));
+        return view('etat.decedes',compact('agents'));
 
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConjointsTable extends Migration
+class CreateConjointIllegitimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateConjointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('conjoints', function (Blueprint $table) {
+        Schema::create('conjoint_illegitimes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('agent_id');
             $table->timestamps();
+            $table->unsignedInteger('agent_id');
             $table->string('nomConj');
             $table->string('prenomConj');
             $table->string('sexeConj');
@@ -26,10 +26,7 @@ class CreateConjointsTable extends Migration
             $table->string('villageVilleConj');
             $table->string('prefectConj');
             $table->string('ethnieConj');
-            $table->date('dateMariageCivil');
-            $table->date('dateMariageReli');
-            $table->date('dateMariageCoutu');
-            $table->date('dateDece')->nullable();
+            $table->string('MotifRelation');
         });
     }
 
@@ -40,6 +37,6 @@ class CreateConjointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conjoints');
+        Schema::dropIfExists('conjoint_illegitimes');
     }
 }
