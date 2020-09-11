@@ -61,9 +61,9 @@ class Agent extends Model
 
     }
 
-    public function ConjointIllegitimes()
+    public function conjointis()
     {
-            return $this->hasMany('App\ConjointIllegitime');
+            return $this->hasMany('App\Conjointi');
     }
 
 

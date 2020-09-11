@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ConjointIllegitime extends Model
+class Conjointi extends Model
 {
     protected $guarded = [];
     

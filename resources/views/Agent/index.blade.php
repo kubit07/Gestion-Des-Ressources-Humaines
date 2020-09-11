@@ -9,7 +9,7 @@
 <a href="{{route('agent.agents.pasteurs')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">  Liste des Pasteurs<a/>&nbsp;
 <a href="{{route('agent.agents.Catéchistes')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">  Liste des Catéchistes<a/>&nbsp;
 <a href="{{route('conjoint.conjoint.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjoint(e)s Legitimes</a>&nbsp;
-<a href="{{route('conjointillegitime.conjointillegitime.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjointllegitimes</a>&nbsp;
+<a href="{{route('conjointi.conjointi.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjointllegitimes</a>&nbsp;
 <a href="{{route('personneaprevenir.personneaprevenir.index')}}" class="btn btn-success my-3" style="font-family: Monotype Corsiva;"> Personne A Prevenir</a>
 <hr>
 @endcan

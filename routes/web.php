@@ -62,9 +62,18 @@ Route::namespace('Conjoint')->prefix('conjoint')->name('conjoint.')->group(funct
 });
 
 
-Route::namespace('Conjointillegitime')->prefix('conjointillegitime')->name('conjointillegitime.')->group(function(){
+Route::namespace('Conjointi')->prefix('conjointi')->name('conjointi.')->group(function(){
 
-    Route::resource('conjointillegitime','ConjointIllegitimeController');
+    Route::resource('conjointi','ConjointisController');
 
 });
+
+
+
+Route::namespace('Enfant')->prefix('enfant')->name('enfant.')->group(function(){
+
+    Route::resource('enfant','enfantsController');
+
+});
+
 

@@ -25,6 +25,7 @@ class CreateEnfantsTable extends Migration
             $table->integer('telEnfant');
             $table->string('professionEnfant');
             $table->unsignedInteger('conjoint_id');
+            $table->unsignedInteger('conjoint_id');
         });
     }
 

@@ -4,7 +4,7 @@
 <h1 style="font-family: Monotype Corsiva">Liste des Conjoint(e)s illegitimes</h1>
 
 @can('edit-users')  
-<a href="{{route('conjointillegitime.conjointillegitime.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Nouveau/Nouvelle Conjoint(e) illegitime<a/>&nbsp;
+<a href="{{route('conjointi.conjointi.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Nouveau/Nouvelle Conjoint(e) illegitime<a/>&nbsp;
 @endcan
 
 <hr>
@@ -26,17 +26,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($conjointIllegitimes as $conjointIllegitime)
+                            @foreach($conjointis as $conjointi)
                         <tr>
-                            <th scope="row">{{ $conjointIllegitime->id}}</th>
-                            <td><a href="{{route('conjointillegitime.conjointillegitime.show',$conjointIllegitime)}}">{{$conjointIllegitime->nomConj}}</a></td>
-                            <td>{{$conjointIllegitime->prenomConj}}</td>
-                            <td>{{$conjointIllegitime->sexeConj}}</td>
-                            <td>{{\Carbon\Carbon::parse($conjointIllegitime->dateNaisConj)->format('d/m/Y')}}</td>
-                            <td style="color:rgb(221, 139, 16);">{{$conjointIllegitime->agent->nomAgent}} {{$conjointIllegitime->agent->prenomAgent}}</td>
-                            <td>{{$conjointIllegitime->nationConj}}</td>
-                            <td>{{$conjointIllegitime->villageVilleConj}}</td>
-                            <td>{{$conjointIllegitime->MotifRelation}}</td>
+                            <th scope="row">{{ $conjointi->id}}</th>
+                            <td><a href="{{route('conjointi.conjointi.show',$conjointi)}}">{{$conjointi->nomConj}}</a></td>
+                            <td>{{$conjointi->prenomConj}}</td>
+                            <td>{{$conjointi->sexeConj}}</td>
+                            <td>{{\Carbon\Carbon::parse($conjointi->dateNaisConj)->format('d/m/Y')}}</td>
+                            <td style="color:rgb(221, 139, 16);">{{$conjointi->agent->nomAgent}} {{$conjointi->agent->prenomAgent}}</td>
+                            <td>{{$conjointi->nationConj}}</td>
+                            <td>{{$conjointi->villageVilleConj}}</td>
+                            <td>{{$conjointi->MotifRelation}}</td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -45,7 +45,7 @@
     <hr>
 
 <div class="row d-flex justify-content-center">
-    {{$conjointIllegitimes->links()}}
+    {{$conjointis->links()}}
 </div>
 
 @endsection

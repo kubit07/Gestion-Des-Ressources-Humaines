@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\conjointillegitime;
+namespace App\Http\Controllers\Conjointi;
 
 use App\Agent;
-use App\ConjointIllegitime;
+use App\Conjointi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class ConjointIllegitimeController extends Controller
+class ConjointisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +16,7 @@ class ConjointIllegitimeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    
     public function __construct(){
 
         $this->middleware('auth');
@@ -25,9 +26,10 @@ class ConjointIllegitimeController extends Controller
 
     public function index()
     {
-        $conjointIllegitimes = ConjointIllegitime::with('agent')->paginate(4);
         
-        return view('ConjointIllegitime.index',compact('conjointIllegitimes'));
+        $conjointis = Conjointi::with('agent')->paginate(4);
+        
+        return view('ConjointIllegitime.index',compact('conjointis'));
     }
 
     /**
@@ -44,9 +46,9 @@ class ConjointIllegitimeController extends Controller
 
         $agents = Agent::all();
 
-        $conjointIllegitime = new ConjointIllegitime();
+        $conjointi = new Conjointi();
 
-        return view('ConjointIllegitime.create',compact('agents','conjointIllegitime')); 
+        return view('ConjointIllegitime.create',compact('agents','conjointi')); 
     }
 
     /**
@@ -57,29 +59,29 @@ class ConjointIllegitimeController extends Controller
      */
     public function store(Request $request)
     {
-        $conjointIllegitime = ConjointIllegitime::create($this->validator());
+        $conjointi = Conjointi::create($this->validator());
 
-        return redirect()->route('conjointillegitime.conjointillegitime.index')->with("message', 'Enregistrement d'un Etat Effectué avec succès");
+        return redirect()->route('conjointi.conjointi.index')->with("message', 'Enregistrement d'un Etat Effectué avec succès");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ConjointIllegitime  $conjointIllegitime
+     * @param  \App\Conjointi  $conjointi
      * @return \Illuminate\Http\Response
      */
-    public function show(ConjointIllegitime $conjointIllegitime)
+    public function show(Conjointi $conjointi)
     {
-        return view('ConjointIllegitime.show',compact('conjointIllegitime'));
+        return view('ConjointIllegitime.show',compact('conjointi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ConjointIllegitime  $conjointIllegitime
+     * @param  \App\Conjointi  $conjointi
      * @return \Illuminate\Http\Response
      */
-    public function edit(ConjointIllegitime $conjointIllegitime)
+    public function edit(Conjointi $conjointi)
     {
         //
     }
@@ -88,10 +90,10 @@ class ConjointIllegitimeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ConjointIllegitime  $conjointIllegitime
+     * @param  \App\Conjointi  $conjointi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ConjointIllegitime $conjointIllegitime)
+    public function update(Request $request, Conjointi $conjointi)
     {
         //
     }
@@ -99,19 +101,19 @@ class ConjointIllegitimeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ConjointIllegitime  $conjointIllegitime
+     * @param  \App\Conjointi  $conjointi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ConjointIllegitime $conjointIllegitime)
+    public function destroy(Conjointi $conjointi)
     {
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
         }
 
-        $conjointIllegitime->delete();
+        $conjointi->delete();
 
-        return redirect()->route('conjoint.conjoint.index')->with('message', 'Suppression Effectué avec succès');
+        return redirect()->route('conjointi.conjointi.index')->with('message', 'Suppression Effectué avec succès');
     }
 
     private function validator() {
@@ -133,5 +135,4 @@ class ConjointIllegitimeController extends Controller
         ]);
         
     }
-
 }
