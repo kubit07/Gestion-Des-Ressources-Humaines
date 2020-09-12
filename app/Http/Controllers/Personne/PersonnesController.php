@@ -1,21 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\PersonneAPrevenir;
+namespace App\Http\Controllers\Personne;
+
 
 use App\Agent;
-use App\PersonneAPrevenir;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Personne;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class PersonneAPrevenirController extends Controller
+
+class PersonnesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
+     
     public function __construct(){
 
         $this->middleware('auth');
@@ -24,10 +27,10 @@ class PersonneAPrevenirController extends Controller
 
     public function index()
     {
-        
-        $personneAPrevenirs = PersonneAPrevenir::all();
 
-        return view('PersonneAPrevenir.index')->with('personneAPrevenirs',$personneAPrevenirs);
+        $personnes = Personne::with('agent')->paginate(5);
+
+        return view('personneaprevenir.index',compact('personnes'));
     }
 
     /**
@@ -37,14 +40,17 @@ class PersonneAPrevenirController extends Controller
      */
     public function create()
     {
+        
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
         }
-        $agents = Agent::all();
-        $personne_a_prevenirs = new PersonneAPrevenir();
-        return view('personneaprevenir.create',compact('agents','personne_a_prevenirs')); 
 
+        $agents = Agent::all();
+
+        $personne = new Personne();
+
+        return view('personneaprevenir.create',compact('agents','personne')); 
     }
 
     /**
@@ -55,18 +61,18 @@ class PersonneAPrevenirController extends Controller
      */
     public function store(Request $request)
     {
-        $personne_a_prevenir = PersonneAPrevenir::create($this->validator());
+        $personne = Personne::create($this->validator());
 
-        return redirect()->route('personneaprevenir.personneaprevenir.index')->with('message', 'Enregistrement Effectué avec succès');
+        return redirect()->route('personne.personne.index')->with('message', 'Enregistrement Effectué avec succès');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\PersonneAPrevenir  $personneAPrevenir
+     * @param  \App\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function show(PersonneAPrevenir $personneAPrevenir)
+    public function show(Personne $personne)
     {
         //
     }
@@ -74,10 +80,10 @@ class PersonneAPrevenirController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PersonneAPrevenir  $personneAPrevenir
+     * @param  \App\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function edit(PersonneAPrevenir $personneAPrevenir)
+    public function edit(Personne $personne)
     {
         //
     }
@@ -86,10 +92,10 @@ class PersonneAPrevenirController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PersonneAPrevenir  $personneAPrevenir
+     * @param  \App\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PersonneAPrevenir $personneAPrevenir)
+    public function update(Request $request, Personne $personne)
     {
         //
     }
@@ -97,31 +103,30 @@ class PersonneAPrevenirController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PersonneAPrevenir  $personneAPrevenir
+     * @param  \App\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PersonneAPrevenir $personneAPrevenir)
+    public function destroy(Personne $personne)
     {
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
         }
 
-        $personneAPrevenir->delete();
+        $personne->delete();
 
-        return redirect()->route('personneaprevenir.personneaprevenir.index')->with('message', 'Suppression Effectué avec succès');
+        return redirect()->route('personne.personne.index')->with('message', 'Suppression Effectué avec succès');
     }
-
 
     private function validator() {
 
         return request()->validate([
-
-            'nomPAP' => 'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
-            'numPAP' =>  'required|regex:/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m',
-            'agent_id'  => 'required|integer'
+            'typePAP' => 'required',
+            'nomPAP'  => 'required|min:3|max:60|regex:/^[a-zA-Z_ ]+$/u',
+            'numPAP'  =>  'required|regex:/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/m',
+            'agent_id'=> 'required|integer'
+            
         ]);
         
     }
-
 }

@@ -43,7 +43,7 @@
         <select class="custom-select" name="type_agent_id"  @error('type_agent_id') is-invalid @enderror
         id="type_agent_id">
         @foreach($type_agents as $type_agent)
-        <option value="{{ $type_agent->id }}" {{$agent->type_agent_id == $type_agent->id ? 'selected' : ''}}> {{$type_agent->libTypeAgent}} </option>
+        <option value="{{ $type_agent->id }}" {{$agent->type_agent_id == $type_agent->id ? 'selected' : ''}} @if(old('type_agent_id') == 2 ) selected @endif> {{$type_agent->libTypeAgent}} </option>
         @endforeach
         </select>
         @error('type_agent_id')
@@ -661,7 +661,7 @@
 <div class="form-group">
     <label for="tel">Numero de Telephone de l'Agent :</label>
     <input type="tel" class="form-control  @error('tel') is-invalid @enderror " name="tel"
-    placeholder="Rentrer le nom de la marraine de l'agent...." id="tel" value="{{old('tel') ?? $agent->tel}}">
+    placeholder="Rentrer le numero de telephone de l'agent...." id="tel" value="{{old('tel') ?? $agent->tel}}">
     @error('tel')
         <div class="invalid-feedback">
         {{$errors->first('tel')}}

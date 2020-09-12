@@ -5,8 +5,8 @@
 
 @can('edit-users')  
 <a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Nouveau/Nouvelle Conjoint(e) legitime<a/>&nbsp;
-<a href="{{route('conjoint.conjoints.decedes')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">Liste des Conjoint(e)s Legitimes Décédés<a/>
-<a href="{{route('conjoint.conjoints.decedes')}}" class="btn btn-primary my-3" style="font-family: Monotype Corsiva;">Ajouter Enfant<a/>
+<a href="{{route('conjoint.conjoints.decedes')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">Liste des Conjoint(e)s Legitimes Décédés<a/>&nbsp;
+<a href="{{route('enfant.enfant.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Enfant<a/>
 @endcan
 <hr>
 

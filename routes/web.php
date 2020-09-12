@@ -46,14 +46,6 @@ Route::namespace('Etat')->prefix('etat')->name('etat.')->group(function(){
 });
 
 
-
-Route::namespace('PersonneAPrevenir')->prefix('personneaprevenir')->name('personneaprevenir.')->group(function(){
-
-    Route::resource('personneaprevenir','PersonneAPrevenirController');
-
-});
-
-
 Route::namespace('Conjoint')->prefix('conjoint')->name('conjoint.')->group(function(){
 
     Route::resource('conjoint','ConjointController');
@@ -75,5 +67,13 @@ Route::namespace('Enfant')->prefix('enfant')->name('enfant.')->group(function(){
     Route::resource('enfant','enfantsController');
 
 });
+
+
+Route::namespace('Personne')->prefix('personne')->name('personne.')->group(function(){
+
+    Route::resource('personne','PersonnesController');
+
+});
+
 
 
