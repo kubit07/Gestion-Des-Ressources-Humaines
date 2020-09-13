@@ -29,7 +29,7 @@ class AgentsController extends Controller
 
     public function index()
     {
-        $agents = Agent::orderBy('nomAgent', 'asc')->get();
+        $agents = Agent::orderBy('id', 'asc')->get();
 
         $agents = Agent::with('etat','typeAgent')->paginate(5);
 
@@ -246,7 +246,7 @@ class AgentsController extends Controller
 
     public function pasteurs()  {
 
-        $agents = Agent::where('type_agent_id',1)->get();
+        $agents = Agent::where('type_agent_id',1)->where('etat_id',1)->get();
 
         return view('agent.pasteur',compact('agents'));
 
@@ -254,7 +254,7 @@ class AgentsController extends Controller
 
     public function Catéchistes()  {
 
-        $agents = Agent::where('type_agent_id',2)->get();
+        $agents = Agent::where('type_agent_id',2)->where('etat_id',1)->get();
 
         return view('agent.Catéchistes',compact('agents'));
 
@@ -274,6 +274,37 @@ class AgentsController extends Controller
         $agents = Agent::where('etat_id',3)->get();
 
         return view('etat.decedes',compact('agents'));
+
+    }
+
+    public function search(){
+
+        $search = $_GET['query'];
+        
+        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')->with('etat','typeAgent')->get();
+
+        return view('agent.search',compact('agents'));
+
+    }
+
+    public function searchPasteur(){
+
+        $search = $_GET['query'];
+
+        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')->where('type_agent_id',1)->where('etat_id',1)->with('etat','typeAgent')->get();
+
+        return view('agent.searchPasteur',compact('agents'));
+
+    }
+
+    
+    public function searchCatechiste(){
+
+        $search = $_GET['query'];
+
+        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')->where('type_agent_id',2)->where('etat_id',1)->with('etat','typeAgent')->get();
+
+        return view('agent.searchCatechiste',compact('agents'));
 
     }
 

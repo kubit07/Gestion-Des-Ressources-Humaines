@@ -14,7 +14,7 @@
 @can('edit-users')
 <form action="{{route('agent.agents.destroy',$agent->id)}}" method="post" style="display: inline; font-family: lucida calligraphy;">
 <a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3">Ajouter Conjoint(e)</a>
-<a href="{{route('personneaprevenir.personneaprevenir.create')}}" class="btn btn-success my-3">Ajouter Personne A Prevenir</a>
+<a href="{{route('personne.personne.create')}}" class="btn btn-success my-3">Ajouter Personne A Prevenir</a>
 @endcan
 
     @csrf

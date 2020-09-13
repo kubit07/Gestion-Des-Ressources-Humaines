@@ -3,14 +3,23 @@
 @section('content')
 <h1 style="font-family: Monotype Corsiva">Liste des Agents</h1>
 
+<div  style="display: flex; justify-content: center;">
+<form class="form-inline my-2 my-lg-0" type="get" action="{{route('agent.search')}}">
+    <input class="form-control mr-sm-2" type="search" name="query" placeholder="Rechercher Agent..." aria-label="Search" style="font-family: Monotype Corsiva">
+    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva">Search</button>
+</form>
+</div>
+
+
+
 @can('edit-users')  
-<a href="{{route('agent.agents.create')}}" class="btn btn-primary my-3" style="font-family: Monotype Corsiva">Nouveau agent<a/>&nbsp;
-<a href="{{route('etat.etats.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">  Liste des Etats<a/>&nbsp;
+<a href="{{route('agent.agents.create')}}" class="btn btn-outline-primary my-3" style="font-family: Monotype Corsiva">Nouveau agent<a/>&nbsp;
+<a href="{{route('etat.etats.index')}}" class="btn btn-outline-dark my-3" style="font-family: Monotype Corsiva;">  Liste des Etats<a/>&nbsp;
 <a href="{{route('agent.agents.pasteurs')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">  Liste des Pasteurs<a/>&nbsp;
 <a href="{{route('agent.agents.Catéchistes')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">  Liste des Catéchistes<a/>&nbsp;
 <a href="{{route('conjoint.conjoint.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjoint(e)s Legitimes</a>&nbsp;
 <a href="{{route('conjointi.conjointi.index')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva;"> Liste des Conjointllegitimes</a>&nbsp;
-<a href="{{route('personne.personne.index')}}" class="btn btn-success my-3" style="font-family: Monotype Corsiva;"> Personne A Prevenir</a>
+<a href="{{route('personne.personne.index')}}" class="btn btn-outline-success my-3" style="font-family: Monotype Corsiva;"> Personne A Prevenir</a>
 
 <hr>
 @endcan

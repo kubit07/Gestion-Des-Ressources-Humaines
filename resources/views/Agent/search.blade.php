@@ -1,14 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 style="font-family: Monotype Corsiva">Liste des Pasteurs</h1>
-<form class="form-inline my-2 my-lg-0" type="get" action="{{route('agent.searchPasteur')}}">
-    <input class="form-control mr-sm-2" type="search" name="query" placeholder="Rechercher Pasteur..." aria-label="Search" style="font-family: Monotype Corsiva">
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva">Search</button>
-</form>
+<h1 style="font-family: Monotype Corsiva">Liste des Agents</h1>
 
 <hr>
-
     <ul>
 
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
@@ -24,6 +19,7 @@
                             <th scope="col">Type Agent</th>
                             <th scope="col">Nationalite</th>
                             <th scope="col">Telephone</th>
+                            <th scope="col">Date d'Embauche</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,12 +35,12 @@
                             <td>{{$agent->typeAgent->libTypeAgent}}</td>
                             <td>{{$agent->nationAgent}}</td>
                             <td>{{$agent->tel}}</td>
+                            <td>{{\Carbon\Carbon::parse($agent->created_at)->format('d/m/Y H:i:s')}}</td>
                         </tr>
                         @endforeach
                         </tbody>
               </table> 
     </ul>
-    
-<hr>
+    <hr>
 
 @endsection

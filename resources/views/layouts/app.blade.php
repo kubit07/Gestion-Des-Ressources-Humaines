@@ -38,7 +38,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-dark bg-dark" style="font-family: Viner Hand ITC; font-weight: bold;">
+        <nav class="navbar navbar-expand navbar-dark bg-dark bg-dark border-bottom shadow-sm" style="font-family: Viner Hand ITC; font-weight: bold;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -123,5 +123,12 @@
             @yield('content')
         </main>
     </div>
+
+<footer class="footer mt-auto py-3"  style="background-color: #ffffff;">
+        <div class="container">
+          <span style="font-family: Monotype Corsiva; font-weight: bold; display: flex; justify-content: center; color:blue"> Copyright &copy; 2020 - realisé par Dave Saa - Tous droits reserves.</span>
+        </div>
+</footer>
+
 </body>
 </html>

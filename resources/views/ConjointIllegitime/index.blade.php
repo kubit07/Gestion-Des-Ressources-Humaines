@@ -5,6 +5,7 @@
 
 @can('edit-users')  
 <a href="{{route('conjointi.conjointi.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Nouveau/Nouvelle Conjoint(e) illegitime<a/>&nbsp;
+<a href="{{route('enfanti.enfanti.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Enfant<a/>
 @endcan
 
 <hr>

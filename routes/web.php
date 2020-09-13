@@ -35,6 +35,9 @@ Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function(){
     Route::get('/Catéchistes','AgentsController@Catéchistes')->name('agents.Catéchistes');
     Route::get('/valides','AgentsController@valides')->name('agents.valides');
     Route::get('/decedes','AgentsController@decedes')->name('agents.decedes');
+    Route::get('/search','AgentsController@search')->name('search');
+    Route::get('/searchPasteur','AgentsController@searchPasteur')->name('searchPasteur');
+    Route::get('/searchCatechiste','AgentsController@searchCatechiste')->name('searchCatechiste');
 
 });
 
@@ -76,4 +79,8 @@ Route::namespace('Personne')->prefix('personne')->name('personne.')->group(funct
 });
 
 
+Route::namespace('Enfanti')->prefix('enfanti')->name('enfanti.')->group(function(){
 
+    Route::resource('enfanti','EnfantisController');
+
+});
