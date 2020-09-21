@@ -9,6 +9,7 @@
 
 @can('edit-users')
 <form action="{{route('conjoint.conjoint.destroy',$conjoint->id)}}"  method="post" style="font-family: Monotype Corsiva; font-size: 1.2em;">
+<a href="{{route('enfant.enfant.create',$conjoint->id)}}" class="btn btn-primary my-3" style="font-family: Monotype Corsiva; font-size: 1.0em;">Ajouter Enfant</a>
 <a href="{{route('conjoint.conjoint.edit',$conjoint->id)}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva; font-size: 1.0em;">Editer</a>
 @endcan
 

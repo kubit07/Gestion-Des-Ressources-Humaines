@@ -9,6 +9,7 @@
 
 @can('edit-users')
 <form action="{{route('conjointi.conjointi.destroy',$conjointi->id)}}"  method="post" style="font-family: Monotype Corsiva; font-size: 1.2em;">
+<a href="{{route('enfanti.enfanti.create',$conjointi->id)}}" class="btn btn-primary my-3" style="font-family: Monotype Corsiva; font-size: 1.0em;">Ajouter Enfant</a>
 @endcan
 
     @csrf

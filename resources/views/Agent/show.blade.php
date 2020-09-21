@@ -3,7 +3,7 @@
 
 @section('content')
 
-<h3 style="font-family: Monotype Corsiva; font-weight:1.2em;">{{$agent->typeagent->libTypeAgent}}  {{$agent->nomAgent}} {{$agent->prenomAgent}}</h3>
+<h3 style="font-family: Monotype Corsiva; font-weight:1.2em;"> <span style="font-weight: bold; font-size:1.3em;"> {{$agent->typeagent->libTypeAgent}} </span> {{$agent->nomAgent}} {{$agent->prenomAgent}}</h3>
 
 
   
@@ -13,8 +13,9 @@
 
 @can('edit-users')
 <form action="{{route('agent.agents.destroy',$agent->id)}}" method="post" style="display: inline; font-family: lucida calligraphy;">
-<a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3">Ajouter Conjoint(e)</a>
-<a href="{{route('personne.personne.create')}}" class="btn btn-success my-3">Ajouter Personne A Prevenir</a>
+<a href="{{route('conjoint.conjoint.create', $agent->id)}}" class="btn btn-info my-3">Ajouter Conjoint(e) Légitime</a>
+<a href="{{route('conjointi.conjointi.create', $agent->id)}}" class="btn btn-info my-3">Ajouter Conjoint(e) Illégitime</a>
+<a href="{{route('personne.personne.create',$agent->id)}}" class="btn btn-success my-3">Ajouter Personne A Prevenir</a>
 @endcan
 
     @csrf
@@ -33,7 +34,9 @@
 <div style="font-family: Monotype Corsiva; font-size: 1.2em;">
 <p><strong>Date d'Embauche : {{\Carbon\Carbon::parse($agent->created_at)->format('d/m/Y H:i:s')}}</strong></p>
 <p><strong>Derniere date de Modification : </strong>{{\Carbon\Carbon::parse($agent->updated_at)->format('d/m/Y H:i:s')}}</p>
-<p><strong>Date de Changement d'Etat : </strong>{{($agent->dateEtat)}}</p>
+@if($agent->dateEtat)
+<p><strong>Date de Changement d'Etat : </strong>{{\Carbon\Carbon::parse($agent->dateEtat)->format('d/m/Y H:i:s')}}</p>
+@endif
 <p><strong>Etat : </strong>{{$agent->etat->libEtat}}</p>
 <p><strong>Sexe : </strong>{{$agent->sexeAgent}}</p>
 <p><strong>Date de Naissance : </strong>{{\Carbon\Carbon::parse($agent->dateNaisAgent)->format('d/m/Y')}}</p>

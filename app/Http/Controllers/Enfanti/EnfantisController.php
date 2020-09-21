@@ -37,8 +37,10 @@ class EnfantisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Conjointi $conjointi)
     {
+        $idConjointi = $conjointi->id;
+
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
@@ -48,7 +50,7 @@ class EnfantisController extends Controller
 
         $enfanti = new Enfanti();
 
-        return view('enfantillegitime.create',compact('enfanti','conjointis')); 
+        return view('enfantillegitime.create',compact('enfanti','conjointis','idConjointi')); 
     }
 
     /**

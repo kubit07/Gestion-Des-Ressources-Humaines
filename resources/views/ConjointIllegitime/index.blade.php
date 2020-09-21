@@ -4,8 +4,7 @@
 <h1 style="font-family: Monotype Corsiva">Liste des Conjoint(e)s illegitimes</h1>
 
 @can('edit-users')  
-<a href="{{route('conjointi.conjointi.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Nouveau/Nouvelle Conjoint(e) illegitime<a/>&nbsp;
-<a href="{{route('enfanti.enfanti.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Enfant<a/>
+<a href="{{route('enfanti.enfanti.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Liste des Enfants<a/>
 @endcan
 
 <hr>
@@ -34,7 +33,7 @@
                             <td>{{$conjointi->prenomConj}}</td>
                             <td>{{$conjointi->sexeConj}}</td>
                             <td>{{\Carbon\Carbon::parse($conjointi->dateNaisConj)->format('d/m/Y')}}</td>
-                            <td style="color:rgb(221, 139, 16);">{{$conjointi->agent->nomAgent}} {{$conjointi->agent->prenomAgent}}</td>
+                            <td style="color:#1d52d6;">{{$conjointi->agent->nomAgent}} {{$conjointi->agent->prenomAgent}}</td>
                             <td>{{$conjointi->nationConj}}</td>
                             <td>{{$conjointi->villageVilleConj}}</td>
                             <td>{{$conjointi->MotifRelation}}</td>

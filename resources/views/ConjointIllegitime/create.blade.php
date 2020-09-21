@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 style="font-variant: small-caps; text-shadow: 0px 5px 10px #7496d6;">Ajouter nouveau Conjoint(e) Illegitime</h1> <br>
+<h1 style="font-family: Monotype Corsiva; text-shadow: 0px 5px 5px #7496d6;">Ajouter Conjoint(e) Illégitime</h1> <br>
 
 <form method="post" action="{{route('conjointi.conjointi.store')}}" enctype="multipart/form-data">
 
@@ -14,7 +14,7 @@
             <select class="custom-select" name="agent_id"  @error('agent_id') is-invalid @enderror
             id="agent_id">
             @foreach($agents as $agent)
-            <option value="{{ $agent->id }}" {{$conjointi->agent_id == $agent->id ? 'selected' : ''}}> {{$agent->nomAgent}} {{$agent->prenomAgent}} </option>
+            <option value="{{ $agent->id }}" {{$conjointi->agent_id == $agent->id ? 'selected' : ''}} {{$idAgent ==  $agent->id ? 'selected' : ''}}> {{$agent->nomAgent}} {{$agent->prenomAgent}} </option>
             @endforeach
             </select>
             @error('agent_id')

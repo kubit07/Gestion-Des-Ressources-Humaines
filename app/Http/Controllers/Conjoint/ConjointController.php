@@ -25,25 +25,26 @@ class ConjointController extends Controller
 
     public function index()
     {
-        $conjoints = Conjoint::with('agent')->paginate(4);
+        $conjoints = Conjoint::with('agent')->orderBy('nomConj', 'asc')->paginate(4);
         
         return view('Conjoint(e).index',compact('conjoints'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param \App\Agent $conjoint
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Agent $agent)
     {
+        $idAgent = $agent->id;
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
         }
         $agents = Agent::all();
         $conjoint = new Conjoint();
-        return view('Conjoint(e).create',compact('agents','conjoint')); 
+        return view('Conjoint(e).create',compact('agents','conjoint','idAgent')); 
     }
 
     /**
@@ -56,7 +57,7 @@ class ConjointController extends Controller
     {
         $conjoint = Conjoint::create($this->validator());
 
-        return redirect()->route('conjoint.conjoint.index')->with("message', 'Enregistrement d'un Etat Effectué avec succès");
+        return redirect()->route('conjoint.conjoint.index')->with('message', "Enregistrement Effectué avec succès");
     }
 
     /**

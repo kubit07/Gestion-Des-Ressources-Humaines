@@ -14,7 +14,7 @@
             <select class="custom-select" name="conjointi_id"  @error('conjointi_id') is-invalid @enderror
             id="conjointi_id">
             @foreach($conjointis as $conjointi)
-            <option value="{{$conjointi->id}}" {{$enfanti->conjointi_id == $conjointi->id ? 'selected' : ''}}> {{$conjointi->nomConj}} {{$conjointi->prenomConj}} </option>
+            <option value="{{$conjointi->id}}" {{$enfanti->conjointi_id == $conjointi->id ? 'selected' : ''}} {{$idConjointi ==  $conjointi->id ? 'selected' : ''}}> {{$conjointi->nomConj}} {{$conjointi->prenomConj}} </option>
             @endforeach
             </select>
             @error('conjointi_id')

@@ -2,13 +2,16 @@
 
 @section('content')
 <div class="container">
-                
-@can('edit-users')  
-<a href="{{route('personne.personne.create')}}" class="btn btn-success my-3" style="font-family: Monotype Corsiva">Ajouter Personne A Prevenir<a/>
-@endcan
+
+<div  style="display: flex; justify-content: left;">
+    <form class="form-inline my-2 my-lg-0" type="get" action="{{route('personne.personne.search')}}">
+    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher Agent..." aria-label="Search" style="font-family: Monotype Corsiva" value="{{ request()->q ?? ''}}">
+    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva"> Search</button>
+    </form>
+</div>
 
 <hr>
-    <div style="font-family: pristina; font-weight: bold; font-size: 1.0em;">
+    <div style="font-family: Monotype Corsiva; font-weight: bold; font-size: 1.0em;">
 
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
 <div style="font-family: Viner Hand ITC; font-weight: bold;">
@@ -50,6 +50,130 @@
             </div>
         </div>
     </div>
+ 
+    <br>
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Liste des Agents</div>
+                <div class="card-body">
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Nombre d'Agents</th>
+                            <th scope="col">Nombre de Pasteurs</th>
+                            <th scope="col">Nombre de Catéchistes</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                                <td>{{$nmbAgents}}</td>
+                                <td>{{$nmbPasteurs}}</td>
+                                <td>{{$nmbCatéchistes}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Liste des Pasteurs </div>
+                <div class="card-body">
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Nombre de Pateurs</th>
+                            <th scope="col">Nombre de Pasteurs valides</th>
+                            <th scope="col">Nombre de Pasteurs Décédés</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                                <td>{{$nmbPasteurs}}</td>
+                                <td>{{$nmbPasteursValides}}</td>
+                                <td>{{$nmbPasteursDécédés}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Liste des Catéchistes</div>
+                <div class="card-body">
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Nombre de Catéchistes</th>
+                            <th scope="col">Nombre de Catéchistes valides</th>
+                            <th scope="col">Nombre de Catéchistes Décédés</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                                <td>{{$nmbCatéchistes}}</td>
+                                <td>{{$nmbCatéchistesValides}}</td>
+                                <td>{{$nmbCatéchistesDécédés}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <br>
+    <br>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Liste des Agents Affectés</div>
+              <div class="card-body">
+
+                  <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Nombre d'Agents déployés</th>
+                          <th scope="col">Nombre de Structures</th>
+                          <th scope="col">Nombre de Fonctions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                              <td>{{$nmbAgentsDeployes}}</td>
+                              <td>{{$nmbStructures}}</td>
+                              <td>{{$nmbFonctions}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
 </div>
 </div>
 @endsection

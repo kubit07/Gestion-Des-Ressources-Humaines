@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Fonction;
 
 use App\Fonction;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class FonctionsController extends Controller
 {
@@ -15,7 +16,9 @@ class FonctionsController extends Controller
      */
     public function index()
     {
-        //
+        $fonctions = Fonction::all();
+
+        return view('fonction.index',compact('fonctions'));
     }
 
     /**
@@ -25,7 +28,14 @@ class FonctionsController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+
+        $fonction = new Fonction();
+
+        return view('fonction.create',compact('fonction')); 
     }
 
     /**
@@ -36,7 +46,9 @@ class FonctionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fonction = Fonction::create($this->validator());
+
+        return redirect()->route('fonction.fonction.index')->with('message',"Enregistrement d'une nouvelle Fonction Effectué avec succès");
     }
 
     /**
@@ -81,6 +93,21 @@ class FonctionsController extends Controller
      */
     public function destroy(Fonction $fonction)
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+
+        $fonction->delete();
+
+        return redirect()->route('fonction.fonction.index')->with('message', 'Suppression Effectué avec succès');
+    }
+
+    private function validator() {
+
+        return request()->validate([
+
+            'libFonction' => 'required|min:3|max:20'
+        ]);
     }
 }

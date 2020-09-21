@@ -1,0 +1,13 @@
+{
+    "Name"             :  "Nom",
+    "E-Mail Address"   :  "Adresse email",
+    "Password"         :  "Mot de passe",
+    "Confirm Password" :  "Confirmation de mot de passe",
+    "New Password"     :  "Nouveau mot de passe",
+    "Welcome"          :  "Bienvenue",
+    "Logout"           :  "Déconnexion",
+    "Reset password"   :  "Réinitialisation mot de passe",
+    "Remember Me"      :  "Se souvenir de moi",
+    "Login"            :  "Identification",
+    "Register"         :  "Enregistrement"
+}

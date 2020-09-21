@@ -3,10 +3,13 @@
 @section('content')
 <h1 style="font-family: Monotype Corsiva">Liste des Catéchistes</h1>
 
-<form class="form-inline my-2 my-lg-0" type="get" action="{{route('agent.searchCatechiste')}}">
-    <input class="form-control mr-sm-2" type="search" name="query" placeholder="Rechercher Agent..." aria-label="Search" style="font-family: Monotype Corsiva">
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva">Search</button>
-</form>
+<div  style="display: flex; justify-content: left;">
+    <form class="form-inline my-2 my-lg-0" type="get" action="{{route('agent.search')}}">
+    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher Agent..." aria-label="Search" style="font-family: Monotype Corsiva" value="{{ request()->q ?? ''}}">
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva">
+        Search</button>
+    </form>
+</div>
 
 <hr>
     <ul>

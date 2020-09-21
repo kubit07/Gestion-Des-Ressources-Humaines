@@ -50,9 +50,9 @@ class Agent extends Model
             return $this->hasMany('App\Mission');
     }
 
-    public function personneAPrevenirs()
+    public function personne()
     {
-            return $this->hasMany('App\PersonneAPrevenir');
+            return $this->hasMany('App\Personne');
     }
 
     public function scopeStatus($query){

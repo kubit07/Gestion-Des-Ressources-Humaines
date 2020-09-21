@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\User;
 use App\Role;
+use App\User;
+use App\Agent;
+use App\Fonction;
+use App\Structure;
+use App\Deploiement;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
@@ -25,7 +29,29 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index')->with('users',$users);
+
+        $nmbAgents = Agent::count();
+
+        $nmbPasteurs = Agent::where('type_agent_id',1)->count();
+
+        $nmbCatéchistes = Agent::where('type_agent_id',2)->count();
+
+        $nmbCatéchistesValides = Agent::where('type_agent_id',2)->where('etat_id',1)->count();
+
+        $nmbPasteursValides = Agent::where('type_agent_id',1)->where('etat_id',1)->count();
+
+        $nmbPasteursDécédés = Agent::where('type_agent_id',1)->where('etat_id',3)->count();
+
+        $nmbCatéchistesDécédés = Agent::where('type_agent_id',2)->where('etat_id',3)->count();
+
+        $nmbAgentsDeployes = Deploiement::count();
+
+        $nmbStructures = Structure::count();
+
+        $nmbFonctions = Fonction::count();
+
+        return view('admin.users.index',compact('users','nmbAgents','nmbPasteurs','nmbCatéchistes','nmbCatéchistesValides','nmbPasteursValides','nmbPasteursDécédés','nmbCatéchistesDécédés','nmbAgentsDeployes','nmbStructures','nmbFonctions'));
+
     }
 
     /**

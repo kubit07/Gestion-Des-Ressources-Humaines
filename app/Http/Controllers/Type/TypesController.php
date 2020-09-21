@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\TypeAgent;
+namespace App\Http\Controllers\Type;
 
-use App\Http\Controllers\Controller;
 use App\TypeAgent;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
-class TypeAgentsController extends Controller
+class TypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,9 @@ class TypeAgentsController extends Controller
      */
     public function index()
     {
-        //
+        $typeAgents = TypeAgent::all();
+
+        return view('type.index',compact('typeAgents'));
     }
 
     /**
@@ -25,7 +28,15 @@ class TypeAgentsController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+
+        $typeAgent = new TypeAgent();
+
+        return view('type.create',compact('typeAgent')); 
+
     }
 
     /**
@@ -36,7 +47,9 @@ class TypeAgentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $typeAgent = TypeAgent::create($this->validator());
+
+        return redirect()->route('type.type.index')->with("message', 'Enregistrement d'un Type Agent Effectué avec succès");
     }
 
     /**
@@ -81,6 +94,21 @@ class TypeAgentsController extends Controller
      */
     public function destroy(TypeAgent $typeAgent)
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+
+        $typeAgent->delete();
+
+        return redirect()->route('type.type.index')->with('message', 'Suppression Effectué avec succès');
+    }
+    
+    private function validator() {
+
+        return request()->validate([
+
+            'libTypeAgent' => 'required|min:3|max:20'
+        ]);
     }
 }

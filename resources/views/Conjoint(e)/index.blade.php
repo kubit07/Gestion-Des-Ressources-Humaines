@@ -4,9 +4,8 @@
 <h1 style="font-family: Monotype Corsiva">Liste des Conjoint(e)s Legitimes</h1>
 
 @can('edit-users')  
-<a href="{{route('conjoint.conjoint.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Nouveau/Nouvelle Conjoint(e) legitime<a/>&nbsp;
 <a href="{{route('conjoint.conjoints.decedes')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;">Liste des Conjoint(e)s Legitimes Décédés<a/>&nbsp;
-<a href="{{route('enfant.enfant.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Enfant<a/>
+<a href="{{route('enfant.enfant.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">liste des Enfants<a/>
 @endcan
 <hr>
 
@@ -36,7 +35,7 @@
                             <td>{{$conjoint->sexeConj}}</td>
                             <td>{{\Carbon\Carbon::parse($conjoint->dateNaisConj)->format('d/m/Y')}}</td>
                             <td>{{$conjoint->lieuNaisCon}}</td>
-                            <td style="color:rgb(221, 139, 16);">{{$conjoint->agent->nomAgent}} {{$conjoint->agent->prenomAgent}}</td>
+                            <td style="color:#1d52d6;">{{$conjoint->agent->nomAgent}} {{$conjoint->agent->prenomAgent}}</td>
                             <td>{{$conjoint->villageVilleConj}}</td>
                             <td>{{$conjoint->prefectConj}}</td>
                             <td>{{$conjoint->ethnieConj}}</td>

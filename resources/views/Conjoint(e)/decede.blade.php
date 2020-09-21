@@ -29,7 +29,7 @@
                             <td>{{$conjoint->sexeConj}}</td>
                             <td>{{\Carbon\Carbon::parse($conjoint->dateNaisConj)->format('d/m/Y')}}</td>
                             <td>{{$conjoint->lieuNaisCon}}</td>
-                            <td style="color:rgb(221, 139, 16);">{{$conjoint->agent->nomAgent}} {{$conjoint->agent->prenomAgent}}</td>
+                            <td style="color:#1d52d6;;">{{$conjoint->agent->nomAgent}} {{$conjoint->agent->prenomAgent}}</td>
                             <td>{{$conjoint->ethnieConj}}</td>
                             <td>{{\Carbon\Carbon::parse($conjoint->dateDece)->format('d/m/Y')}}</td>
                         </tr>

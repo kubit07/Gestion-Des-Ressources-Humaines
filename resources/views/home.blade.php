@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 <div style="font-family: Viner Hand ITC; font-weight: bold;">
 @section('content')

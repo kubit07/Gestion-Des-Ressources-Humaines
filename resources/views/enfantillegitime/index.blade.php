@@ -3,9 +3,6 @@
 @section('content')
 <h1 style="font-family: Monotype Corsiva">Liste des Enfants</h1>
 
-@can('edit-users')  
-<a href="{{route('enfanti.enfanti.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Ajouter Enfant<a/>&nbsp;
-@endcan
 <hr>
 
     <ul>
@@ -36,7 +33,7 @@
                             <td>{{$enfanti->sexeEnfant}}</td>
                             <td>{{\Carbon\Carbon::parse($enfanti->dateNaisEnfant)->format('d/m/Y')}}</td>
                             <td>{{$enfanti->lieuNaisEnfant}}</td>
-                            <td style="color:rgb(221, 139, 16);">{{$enfanti->conjointi->nomConj}} {{$enfanti->conjointi->prenomConj}}</td>
+                            <td style="color:#1d52d6;;">{{$enfanti->conjointi->nomConj}} {{$enfanti->conjointi->prenomConj}}</td>
                             <td>{{$enfanti->sitMatEnfant}}</td>
                             <td>{{$enfanti->telEnfant}}</td>
                             <td>{{$enfanti->professionEnfant}}</td>

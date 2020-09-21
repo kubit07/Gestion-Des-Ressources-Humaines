@@ -2,12 +2,7 @@
 
 @section('content')
 <h1 style="font-family: Monotype Corsiva">Liste des Enfants</h1>
-
-@can('edit-users')  
-<a href="{{route('enfant.enfant.create')}}" class="btn btn-info my-3" style="font-family: Monotype Corsiva">Ajouter Enfant<a/>&nbsp;
-@endcan
 <hr>
-
     <ul>
 
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
@@ -31,12 +26,12 @@
                             @foreach($enfants as $enfant)
                         <tr>
                             <th scope="row">{{$enfant->id}}</th>
-                            <td>{{$enfant->nomEnfant}}</td>
+                            <td style="color:#1d52d6;">{{$enfant->nomEnfant}}</td>
                             <td>{{$enfant->prenomEnfant}}</td>
                             <td>{{$enfant->sexeEnfant}}</td>
                             <td>{{\Carbon\Carbon::parse($enfant->dateNaisEnfant)->format('d/m/Y')}}</td>
                             <td>{{$enfant->lieuNaisEnfant}}</td>
-                            <td style="color:rgb(221, 139, 16);">{{$enfant->conjoint->nomConj}} {{$enfant->conjoint->prenomConj}}</td>
+                            <td style="color:#1d52d6;">{{$enfant->conjoint->nomConj}} {{$enfant->conjoint->prenomConj}}</td>
                             <td>{{$enfant->sitMatEnfant}}</td>
                             <td>{{$enfant->telEnfant}}</td>
                             <td>{{$enfant->professionEnfant}}</td>

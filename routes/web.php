@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
@@ -53,6 +54,7 @@ Route::namespace('Conjoint')->prefix('conjoint')->name('conjoint.')->group(funct
 
     Route::resource('conjoint','ConjointController');
     Route::get('/decedes','ConjointController@decedes')->name('conjoints.decedes');
+    Route::get('conjoint/create/{agent}','ConjointController@create')->name('conjoint.create');
 
 });
 
@@ -60,6 +62,7 @@ Route::namespace('Conjoint')->prefix('conjoint')->name('conjoint.')->group(funct
 Route::namespace('Conjointi')->prefix('conjointi')->name('conjointi.')->group(function(){
 
     Route::resource('conjointi','ConjointisController');
+    Route::get('conjointi/create/{agent}','ConjointisController@create')->name('conjointi.create');
 
 });
 
@@ -68,6 +71,7 @@ Route::namespace('Conjointi')->prefix('conjointi')->name('conjointi.')->group(fu
 Route::namespace('Enfant')->prefix('enfant')->name('enfant.')->group(function(){
 
     Route::resource('enfant','enfantsController');
+    Route::get('enfant/create/{conjoint}','enfantsController@create')->name('enfant.create');
 
 });
 
@@ -75,6 +79,8 @@ Route::namespace('Enfant')->prefix('enfant')->name('enfant.')->group(function(){
 Route::namespace('Personne')->prefix('personne')->name('personne.')->group(function(){
 
     Route::resource('personne','PersonnesController');
+    Route::get('/searchpersonne','PersonnesController@search')->name('personne.search');
+    Route::get('personne/create/{agent}','PersonnesController@create')->name('personne.create');
 
 });
 
@@ -82,5 +88,40 @@ Route::namespace('Personne')->prefix('personne')->name('personne.')->group(funct
 Route::namespace('Enfanti')->prefix('enfanti')->name('enfanti.')->group(function(){
 
     Route::resource('enfanti','EnfantisController');
+    Route::get('enfanti/create/{conjointi}','EnfantisController@create')->name('enfanti.create');
+    
 
 });
+
+
+Route::namespace('Deploiement')->prefix('deploiement')->name('deploiement.')->group(function(){
+
+    Route::resource('deploiement','DeploiementsController');
+    Route::get('/mutation','DeploiementsController@mutation')->name('deploiement.mutation');
+
+});
+
+
+Route::namespace('Fonction')->prefix('fonction')->name('fonction.')->group(function(){
+
+    Route::resource('fonction','FonctionsController');
+
+});
+
+
+Route::namespace('Structure')->prefix('structure')->name('structure.')->group(function(){
+
+    Route::resource('structure','StructuresController');
+
+
+});
+
+
+Route::namespace('Type')->prefix('type')->name('type.')->group(function(){
+
+    Route::resource('type','TypesController');
+
+
+});
+
+

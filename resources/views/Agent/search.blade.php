@@ -43,4 +43,8 @@
     </ul>
     <hr>
 
+    <div class="row d-flex justify-content-center">
+        {{$agents->links()}}
+    </div>
+
 @endsection

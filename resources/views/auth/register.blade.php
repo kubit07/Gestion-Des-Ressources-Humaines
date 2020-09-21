@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
 <div style="font-family: Monotype Corsiva;font-weight: bold;">

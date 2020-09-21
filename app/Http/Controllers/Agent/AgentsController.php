@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\AjouterAgentRequest;
 
 class AgentsController extends Controller
@@ -29,9 +30,7 @@ class AgentsController extends Controller
 
     public function index()
     {
-        $agents = Agent::orderBy('id', 'asc')->get();
-
-        $agents = Agent::with('etat','typeAgent')->paginate(5);
+        $agents = Agent::orderBy('nomAgent', 'asc')->paginate(5);
 
         return view('agent.index',compact('agents'));
     }
@@ -108,7 +107,14 @@ class AgentsController extends Controller
      */
     public function update(Request $request, Agent $agent)
     {
+       
         
+        if (request()->get('etat_id') != 1) {
+
+            $agent->dateEtat = Carbon::now();
+        }
+
+
         $agent->update($this->validatorUpadte());
 
         $this->storeImage($agent);
@@ -246,7 +252,7 @@ class AgentsController extends Controller
 
     public function pasteurs()  {
 
-        $agents = Agent::where('type_agent_id',1)->where('etat_id',1)->get();
+        $agents = Agent::where('type_agent_id',1)->where('etat_id',1)->orderBy('nomPAP', 'asc')->get();
 
         return view('agent.pasteur',compact('agents'));
 
@@ -254,7 +260,7 @@ class AgentsController extends Controller
 
     public function Catéchistes()  {
 
-        $agents = Agent::where('type_agent_id',2)->where('etat_id',1)->get();
+        $agents = Agent::where('type_agent_id',2)->where('etat_id',1)->orderBy('nomPAP', 'asc')->get();
 
         return view('agent.Catéchistes',compact('agents'));
 
@@ -263,7 +269,7 @@ class AgentsController extends Controller
     
     public function valides()  {
 
-        $agents = Agent::where('etat_id',1)->get();
+        $agents = Agent::where('etat_id',1)->orderBy('nomConj', 'asc')->get();
 
         return view('etat.valide',compact('agents'));
 
@@ -271,7 +277,7 @@ class AgentsController extends Controller
     
     public function decedes()  {
 
-        $agents = Agent::where('etat_id',3)->get();
+        $agents = Agent::where('etat_id',3)->orderBy('nomConj', 'asc')->get();
 
         return view('etat.decedes',compact('agents'));
 
@@ -279,9 +285,18 @@ class AgentsController extends Controller
 
     public function search(){
 
-        $search = $_GET['query'];
+        request()->validate([
+
+            'q' => 'required|min:3'
+
+        ]);
+
+        $search = request()->input('q');
         
-        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')->with('etat','typeAgent')->get();
+        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')
+                        ->orwhere('prenomAgent','LIKE','%'.$search.'%')
+                        ->with('etat','typeAgent')
+                        ->paginate(4);
 
         return view('agent.search',compact('agents'));
 
@@ -289,22 +304,46 @@ class AgentsController extends Controller
 
     public function searchPasteur(){
 
-        $search = $_GET['query'];
+        request()->validate([
 
-        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')->where('type_agent_id',1)->where('etat_id',1)->with('etat','typeAgent')->get();
+            'q' => 'required|min:3'
 
-        return view('agent.searchPasteur',compact('agents'));
+        ]);
+
+        $search = request()->input('q');
+        
+        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')
+                        ->orwhere('prenomAgent','LIKE','%'.$search.'%')
+                        ->where('type_agent_id',1)
+                        ->where('etat_id',1)
+                        ->with('etat','typeAgent')
+                        ->paginate(4);
+
+            return view('agent.searchPasteur',compact('agents'));
+
 
     }
 
     
     public function searchCatechiste(){
 
-        $search = $_GET['query'];
+        request()->validate([
 
-        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')->where('type_agent_id',2)->where('etat_id',1)->with('etat','typeAgent')->get();
+            'q' => 'required|min:3'
 
-        return view('agent.searchCatechiste',compact('agents'));
+        ]);
+
+        $search = request()->input('q');
+        
+        $agents = Agent::where('nomAgent','LIKE','%'.$search.'%')
+                        ->orwhere('prenomAgent','LIKE','%'.$search.'%')
+                        ->where('type_agent_id',2)
+                        ->where('etat_id',1)
+                        ->with('etat','typeAgent')
+                        ->paginate(4);
+
+            return view('agent.searchCatechiste',compact('agents'));
+
 
     }
 

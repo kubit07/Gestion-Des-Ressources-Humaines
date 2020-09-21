@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
 
@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style = "background-color:azure;">
+            <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

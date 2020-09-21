@@ -34,8 +34,10 @@ class EnfantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Conjoint $conjoint)
     {
+        $idConjoint = $conjoint->id;
+
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
@@ -45,7 +47,7 @@ class EnfantsController extends Controller
 
         $enfant = new Enfant();
 
-        return view('enfant.create',compact('enfant','conjoints')); 
+        return view('enfant.create',compact('enfant','conjoints','idConjoint')); 
     }
 
     /**
@@ -58,7 +60,7 @@ class EnfantsController extends Controller
     {
         $enfant = Enfant::create($this->validator());
 
-        return redirect()->route('enfant.enfant.index')->with("message', 'Enregistrement d'un Etat Effectué avec succès");
+        return redirect()->route('enfant.enfant.index')->with('message', "Enregistrement Effectué avec succès");
     }
 
     /**

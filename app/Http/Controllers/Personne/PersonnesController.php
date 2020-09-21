@@ -28,7 +28,7 @@ class PersonnesController extends Controller
     public function index()
     {
 
-        $personnes = Personne::with('agent')->paginate(5);
+        $personnes = Personne::with('agent')->orderBy('nomPAP', 'asc')->paginate(4);
 
         return view('personneaprevenir.index',compact('personnes'));
     }
@@ -38,8 +38,9 @@ class PersonnesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Agent $agent)
     {
+        $idAgent = $agent->id;
         
         if (Gate::denies('edit-users')){
 
@@ -50,7 +51,7 @@ class PersonnesController extends Controller
 
         $personne = new Personne();
 
-        return view('personneaprevenir.create',compact('agents','personne')); 
+        return view('personneaprevenir.create',compact('agents','personne','idAgent')); 
     }
 
     /**
@@ -128,5 +129,16 @@ class PersonnesController extends Controller
             
         ]);
         
+    }
+
+    public function search(){
+        request()->validate([
+            'q' => 'required|min:3'
+        ]);
+        $search = request()->input('q');
+        
+        $personnes = Agent::where('nomAgent','LIKE','%'.$search.'%')
+                        ->paginate(4);
+        return view('personneaprevenir.search',compact('personnes'));
     }
 }

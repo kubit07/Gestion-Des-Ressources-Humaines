@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 style="font-variant: small-caps; text-shadow: 0px 5px 10px #7496d6;">Ajouter nouveau Enfant</h1> <br>
+<h1 style="font-family: Monotype Corsiva; text-shadow: 0px 5px 5px #7496d6;">Ajouter nouveau Enfant</h1> <br>
 
 <form method="post" action="{{route('enfant.enfant.store')}}" enctype="multipart/form-data">
 
@@ -14,7 +14,7 @@
             <select class="custom-select" name="conjoint_id"  @error('conjoint_id') is-invalid @enderror
             id="conjoint_id">
             @foreach($conjoints as $conjoint)
-            <option value="{{$conjoint->id}}" {{$enfant->conjoint_id == $conjoint->id ? 'selected' : ''}}> {{$conjoint->nomConj}} {{$conjoint->prenomConj}} </option>
+            <option value="{{$conjoint->id}}" {{$enfant->conjoint_id == $conjoint->id ? 'selected' : ''}} {{$idConjoint ==  $conjoint->id ? 'selected' : ''}}> {{$conjoint->nomConj}} {{$conjoint->prenomConj}} </option>
             @endforeach
             </select>
             @error('conjoint_id')

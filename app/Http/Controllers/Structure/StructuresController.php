@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Structure;
 
-use App\Http\Controllers\Controller;
 use App\Structure;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class StructuresController extends Controller
 {
@@ -15,7 +16,9 @@ class StructuresController extends Controller
      */
     public function index()
     {
-        //
+        $structures = Structure::all();
+
+        return view('structure.index',compact('structures'));
     }
 
     /**
@@ -25,7 +28,14 @@ class StructuresController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+
+        $structure = new Structure();
+
+        return view('structure.create',compact('structure')); 
     }
 
     /**
@@ -36,7 +46,9 @@ class StructuresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $structure = Structure::create($this->validator());
+
+        return redirect()->route('structure.structure.index')->with('message',"Enregistrement d'une nouvelle Structure Effectué avec succès");
     }
 
     /**
@@ -81,6 +93,21 @@ class StructuresController extends Controller
      */
     public function destroy(Structure $structure)
     {
-        //
+        if (Gate::denies('edit-users')){
+
+            return redirect()->route('admin.users.index');
+        }
+        $structure->delete();
+
+        return redirect()->route('structure.structure.index')->with('message', 'Suppression Effectué avec succès');
+    }
+
+    private function validator() {
+
+        return request()->validate([
+
+            'nomStructure' => 'required|min:3|max:20',
+            'typeStructure' => 'required|min:3|max:20'
+        ]);
     }
 }

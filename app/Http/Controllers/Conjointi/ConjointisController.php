@@ -27,7 +27,7 @@ class ConjointisController extends Controller
     public function index()
     {
         
-        $conjointis = Conjointi::with('agent')->paginate(4);
+        $conjointis = Conjointi::with('agent')->orderBy('nomConj', 'asc')->paginate(4);
         
         return view('ConjointIllegitime.index',compact('conjointis'));
     }
@@ -37,8 +37,10 @@ class ConjointisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Agent $agent)
     {
+        $idAgent = $agent->id;
+
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
@@ -48,7 +50,7 @@ class ConjointisController extends Controller
 
         $conjointi = new Conjointi();
 
-        return view('ConjointIllegitime.create',compact('agents','conjointi')); 
+        return view('ConjointIllegitime.create',compact('agents','conjointi','idAgent')); 
     }
 
     /**
