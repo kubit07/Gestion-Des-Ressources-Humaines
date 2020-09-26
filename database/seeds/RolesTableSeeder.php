@@ -13,7 +13,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::truncate();//va permettre de supprimer tout les roles dans la table table role
+        //Role::truncate();//va permettre de supprimer tout les roles dans la table table role
 
         Role::create([ 'name' => 'admin']);
         Role::create([ 'name' => 'assistant']);

@@ -47,11 +47,13 @@ class CreateAgentsTable extends Migration
             $table->string('nomMarraine');
             $table->string('photoAgent')->nullable();
             $table->string('quartier');
-            $table->integer('rue');
+            $table->string('rue');
             $table->string('ville');
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('email');
             $table->date('dateEtat')->nullable();
+            $table->date('dateTypeagent')->nullable();
+
             
         });
 

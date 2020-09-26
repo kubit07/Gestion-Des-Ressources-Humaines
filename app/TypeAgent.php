@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeAgent extends Model
+class Typeagent extends Model
 {
     protected $guarded = [];
-
     
     public function agents()
     {

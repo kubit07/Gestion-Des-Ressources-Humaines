@@ -6,6 +6,8 @@
 <hr>
     <ul>
 
+        <div style="overflow-x:auto;">
+
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
                         <thead class="thead-dark">
                         <tr>
@@ -40,6 +42,9 @@
                         @endforeach
                         </tbody>
               </table> 
+    
+        </div>
+        
     </ul>
     <hr>
 

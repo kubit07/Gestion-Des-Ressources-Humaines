@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeMission extends Model
+class Typemission extends Model
 {
     protected $guarded = [];
       

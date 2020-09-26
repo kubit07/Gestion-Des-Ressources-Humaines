@@ -130,7 +130,7 @@ class PersonnesController extends Controller
         ]);
         
     }
-
+/*
     public function search(){
         request()->validate([
             'q' => 'required|min:3'
@@ -141,4 +141,5 @@ class PersonnesController extends Controller
                         ->paginate(4);
         return view('personneaprevenir.search',compact('personnes'));
     }
+*/
 }

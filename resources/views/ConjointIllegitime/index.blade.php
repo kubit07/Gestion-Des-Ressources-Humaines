@@ -4,13 +4,15 @@
 <h1 style="font-family: Monotype Corsiva">Liste des Conjoint(e)s illegitimes</h1>
 
 @can('edit-users')  
-<a href="{{route('enfanti.enfanti.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Liste des Enfants<a/>
+<a href="{{route('enfanti.enfanti.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Liste des Enfants<a/>&nbsp;
+    <a href="{{route('EtatGeneral.AgentsConjointi')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">Etat Général<a/>
 @endcan
 
 <hr>
 
     <ul>
 
+        <div style="overflow-x:auto;">
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
                         <thead class="thead-dark">
                         <tr>
@@ -41,6 +43,8 @@
                         @endforeach
                         </tbody>
               </table> 
+        </div>
+        
     </ul>
     <hr>
 

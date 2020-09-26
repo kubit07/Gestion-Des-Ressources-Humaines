@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Type;
+namespace App\Http\Controllers\TypeAgent;
 
-use App\TypeAgent;
+use App\Typeagent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 
-class TypesController extends Controller
+class TypeagentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $typeAgents = TypeAgent::all();
+        $typeagents = Typeagent::all();
 
-        return view('type.index',compact('typeAgents'));
+        return view('type.index',compact('typeagents'));
     }
 
     /**
@@ -33,9 +33,9 @@ class TypesController extends Controller
             return redirect()->route('admin.users.index');
         }
 
-        $typeAgent = new TypeAgent();
+        $typeagent = new Typeagent();
 
-        return view('type.create',compact('typeAgent')); 
+        return view('type.create',compact('typeagent')); 
 
     }
 
@@ -47,18 +47,18 @@ class TypesController extends Controller
      */
     public function store(Request $request)
     {
-        $typeAgent = TypeAgent::create($this->validator());
+        $typeagent = Typeagent::create($this->validator());
 
-        return redirect()->route('type.type.index')->with("message', 'Enregistrement d'un Type Agent Effectué avec succès");
+        return redirect()->route('typeagent.typeagent.index')->with("message', 'Enregistrement d'un Type Agent Effectué avec succès");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TypeAgent  $typeAgent
+     * @param  \App\Typeagent  $typeagent
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeAgent $typeAgent)
+    public function show(Typeagent $typeagent)
     {
         //
     }
@@ -66,10 +66,10 @@ class TypesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TypeAgent  $typeAgent
+     * @param  \App\Typeagent  $typeagent
      * @return \Illuminate\Http\Response
      */
-    public function edit(TypeAgent $typeAgent)
+    public function edit(Typeagent $typeagent)
     {
         //
     }
@@ -78,10 +78,10 @@ class TypesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TypeAgent  $typeAgent
+     * @param  \App\Typeagent  $typeagent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypeAgent $typeAgent)
+    public function update(Request $request, Typeagent $typeagent)
     {
         //
     }
@@ -89,21 +89,22 @@ class TypesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TypeAgent  $typeAgent
+     * @param  \App\Typeagent  $typeagent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeAgent $typeAgent)
+    public function destroy(Typeagent $typeagent)
     {
+
         if (Gate::denies('edit-users')){
 
             return redirect()->route('admin.users.index');
         }
 
-        $typeAgent->delete();
+        $typeagent->delete();
 
-        return redirect()->route('type.type.index')->with('message', 'Suppression Effectué avec succès');
+        return redirect()->route('typeagent.typeagent.index')->with('message', 'Suppression Effectué avec succès');
     }
-    
+
     private function validator() {
 
         return request()->validate([

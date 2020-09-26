@@ -6,21 +6,23 @@
 <div  style="display: flex; justify-content: left;">
 <form class="form-inline my-2 my-lg-0" type="get" action="{{route('agent.search')}}">
 <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher Agent..." aria-label="Search" style="font-family: Monotype Corsiva" value="{{ request()->q ?? ''}}">
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva">
+    <button class="btn btn-dark my-2 my-sm-0" type="submit" style="font-family: Monotype Corsiva">
     Search</button>
 </form>
 </div>
 
 
+<a href="{{route('agent.Charts')}}" class="btn btn-primary my-3" style="font-family: Monotype Corsiva">Charts<a/>&nbsp;
 
 @can('edit-users')  
 
 <a href="{{route('agent.agents.create')}}" class="btn btn-primary my-3" style="font-family: Monotype Corsiva">Nouveau agent<a/>&nbsp;
 <a href="{{route('etat.etats.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">  Liste des Etats<a/>&nbsp;
-<a href="{{route('type.type.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva; ">  Liste des Types Agents<a/>&nbsp;
+<a href="{{route('typeagent.typeagent.index')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva;">  Liste des Types Agents<a/>&nbsp;
 <a href="{{route('conjoint.conjoint.index')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;"> Liste des Conjoint(e)s Legitimes</a>&nbsp;
 <a href="{{route('conjointi.conjointi.index')}}" class="btn btn-warning my-3" style="font-family: Monotype Corsiva;"> Liste des Conjointllegitimes</a>&nbsp;
 <a href="{{route('personne.personne.index')}}" class="btn btn-success my-3" style="font-family: Monotype Corsiva;"> Personne A Prevenir</a>
+<a href="/telescope" class="btn btn-success my-3" style="font-family: Monotype Corsiva;">Telescope</a>
 @endcan
 
 <hr>
@@ -28,7 +30,9 @@
 
     <ul>
 
-            <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
+        <div style="overflow-x:auto;">
+
+            <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">Matricule</th>
@@ -62,6 +66,7 @@
                         @endforeach
                         </tbody>
               </table> 
+        </div>
     </ul>
     <hr>
 

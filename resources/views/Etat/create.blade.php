@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 style="font-variant: small-caps; text-shadow: 0px 5px 10px #7496d6;">Creer un nouveau Etat</h1> <br>
+<h1 style= "font-family: Monotype Corsiva; text-shadow: 0px 5px 10px #7496d6;">Creer un nouveau Etat</h1> <br>
 
 <form method="post" action="{{route('etat.etats.store')}}" enctype="multipart/form-data">
 

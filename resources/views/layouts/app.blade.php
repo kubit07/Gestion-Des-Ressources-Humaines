@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+   
 
 </head>
 <body>
@@ -51,10 +52,6 @@
                             
                         <li class="nav-item">
                                     <a class="nav-link" href="{{route('deploiement.deploiement.mutation')}}">Mutation</a>
-                        </li>
-            
-                        <li class="nav-item">
-                                    <a class="nav-link" href="">Etat Général</a>
                         </li>
 
                     </ul>
@@ -111,16 +108,6 @@
             </div>
              @endif
 
-            @if(count($errors)>0)
-                <div class="alert alert-danger">
-                    <ul class="mb-0 mt-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             @if(request()->input('q'))
             <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
                  <h6> {{ $agents->total() }} Agent(s) touvé(s) pour la recherche "{{ request()->q}}" </h6>
@@ -135,9 +122,11 @@
         </main>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+
     <footer class="footer mt-auto py-3"  style="background-color: #fff;">
         <div class="container">
-          <span style="font-family: Monotype Corsiva; font-weight: bold; display: flex; justify-content: center; color:#000"> Copyright &copy; 2020 - realisé par Dave Saa - Tous droits reserves.</span>
+          <span style="font-family: Monotype Corsiva; font-weight: bold; display: flex; justify-content: center; color:#000;bottom: 0;"> Copyright &copy; 2020 - realisé par Dave Saa - Tous droits reserves.</span>
         </div>
     </footer>
 

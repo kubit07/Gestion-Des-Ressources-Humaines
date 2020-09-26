@@ -43,7 +43,7 @@ class LoginController extends Controller
 
         if(Auth::user()->roles->pluck('name')->contains('admin')){
 
-            return '/admin/users';
+            return '/agent/agents';
 
         }
 

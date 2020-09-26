@@ -20,7 +20,7 @@ return [
     'alpha_dash'           => 'Le champ :attribute doit contenir uniquement des lettres, des chiffres et des tirets.',
     'alpha_num'            => 'Le champ :attribute doit contenir uniquement des chiffres et des lettres.',
     'array'                => 'Le champ :attribute doit être un tableau.',
-    'before'               => 'Le champ :attribute doit être une date antérieure au :date.',
+    'before'               => "Le champ :attribute doit être une date supérieur à l'année 1999",
     'before_or_equal'      => 'Le champ :attribute doit être une date antérieure ou égale au :date.',
     'between'              => [
         'numeric' => 'La valeur de :attribute doit être comprise entre :min et :max.',

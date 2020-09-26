@@ -30,7 +30,7 @@ class AgentsController extends Controller
 
     public function index()
     {
-        $agents = Agent::orderBy('nomAgent', 'asc')->paginate(5);
+        $agents = Agent::orderBy('nomAgent', 'asc')->with('etat','typeAgent')->paginate(5);
 
         return view('agent.index',compact('agents'));
     }
@@ -61,6 +61,7 @@ class AgentsController extends Controller
      */
     public function store(Request $request)
     {
+
         $agent = Agent::create($this->validator());
 
         $this->storeImage($agent);
@@ -213,7 +214,7 @@ class AgentsController extends Controller
             'sexeAgent' => 'required',
             'type_agent_id'  => 'required|integer',
             'etat_id' => 'required|integer',
-            'dateNaisAgent' => 'required|before:today-21years|after:today-120years',
+            'dateNaisAgent' => 'required|before:today-21years|after:today-60years',
             'lieuNaisAgent' => 'required|min:3|max:60',
             'sitMatAgent' => 'required',
             'nationAgent' => 'required',
@@ -252,7 +253,7 @@ class AgentsController extends Controller
 
     public function pasteurs()  {
 
-        $agents = Agent::where('type_agent_id',1)->where('etat_id',1)->orderBy('nomPAP', 'asc')->get();
+        $agents = Agent::where('type_agent_id',1)->where('etat_id',1)->orderBy('nomAgent', 'asc')->get();
 
         return view('agent.pasteur',compact('agents'));
 
@@ -260,7 +261,7 @@ class AgentsController extends Controller
 
     public function Catéchistes()  {
 
-        $agents = Agent::where('type_agent_id',2)->where('etat_id',1)->orderBy('nomPAP', 'asc')->get();
+        $agents = Agent::where('type_agent_id',2)->where('etat_id',1)->orderBy('nomAgent', 'asc')->get();
 
         return view('agent.Catéchistes',compact('agents'));
 
@@ -269,15 +270,31 @@ class AgentsController extends Controller
     
     public function valides()  {
 
-        $agents = Agent::where('etat_id',1)->orderBy('nomConj', 'asc')->get();
+        $agents = Agent::where('etat_id',1)->orderBy('nomAgent', 'asc')->get();
 
         return view('etat.valide',compact('agents'));
+
+    }
+
+    public function invalides()  {
+
+        $agents = Agent::where('etat_id',2)->orderBy('nomAgent', 'asc')->get();
+
+        return view('etat.invalide',compact('agents'));
+
+    }
+
+    public function retraités(){
+
+        $agents = Agent::where('etat_id',4)->orderBy('nomAgent', 'asc')->get();
+
+        return view('etat.retraités',compact('agents'));
 
     }
     
     public function decedes()  {
 
-        $agents = Agent::where('etat_id',3)->orderBy('nomConj', 'asc')->get();
+        $agents = Agent::where('etat_id',3)->orderBy('nomAgent', 'asc')->get();
 
         return view('etat.decedes',compact('agents'));
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeAgentsTable extends Migration
+class CreateAptitudecompetencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTypeAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_agents', function (Blueprint $table) {
+        Schema::create('aptitudecompetences', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('libTypeAgent');
+            $table->string('libAp');
+            $table->string('appreciation');
         });
     }
 
@@ -27,6 +28,6 @@ class CreateTypeAgentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_agents');
+        Schema::dropIfExists('aptitudecompetences');
     }
 }

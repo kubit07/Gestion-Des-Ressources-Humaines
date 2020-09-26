@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Deploiement extends Model
 {
     protected $guarded = [];
-
-    
+  
     public function agent()
     {
         return $this->belongsTo('App\Agent');
     }
 
-     
+
     public function fonction()
     {
         return $this->belongsTo('App\Fonction');

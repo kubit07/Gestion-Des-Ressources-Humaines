@@ -18,7 +18,7 @@ class CreatePersonnesTable extends Migration
             $table->timestamps();
             $table->string('typePAP');
             $table->string('nomPAP');
-            $table->integer('numPAP');
+            $table->string('numPAP');
             $table->unsignedInteger('agent_id');
 
         });

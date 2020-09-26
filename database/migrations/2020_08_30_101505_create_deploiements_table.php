@@ -22,6 +22,7 @@ class CreateDeploiementsTable extends Migration
             $table->unsignedInteger('agent_id');
             $table->unsignedInteger('fonction_id');
             $table->unsignedInteger('structure_id');
+            $table->date('dateAffectation')->nullable();
         });
     }
 

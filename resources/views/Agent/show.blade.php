@@ -25,9 +25,12 @@
     
 </form>
 <br>
+
+
 @if($agent->photoAgent)
-<img src="{{asset('storage/' .$agent->photoAgent)}}" alt="agent->avatar" class="img-thumbnail" width="275">
+    <img src="{{asset('storage/' .$agent->photoAgent)}}" alt="agent->avatar" class="img-thumbnail" width="275">
 @endif
+
 <hr>
 
 

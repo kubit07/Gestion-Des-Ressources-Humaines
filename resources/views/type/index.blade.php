@@ -4,7 +4,7 @@
 <div class="container" style="font-family: pristina; font-weight: bold; font-size: 1.3em;">
                 
 @can('edit-users')  
-<a href="{{route('type.type.create')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Ajouter Type Agent<a/>&nbsp;
+<a href="{{route('typeagent.typeagent.create')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Ajouter Type Agent<a/>&nbsp;
 <a href="{{route('agent.agents.pasteurs')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Liste des Pasteurs<a/>&nbsp;
 <a href="{{route('agent.agents.Catéchistes')}}" class="btn btn-dark my-3" style="font-family: Monotype Corsiva">Liste des Catéchistes <a/>
 @endcan
@@ -15,6 +15,8 @@
                 <div class="card-header">Liste des Types Agent</div>
                 <div class="card-body">
 
+            <div style="overflow-x:auto;">
+                
                     <table class="table">
                         <thead class="thead-dark">
                           <tr>
@@ -24,13 +26,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($typeAgents as $typeAgent)
+                            @foreach ($typeagents as $typeagent)
                           <tr>
-                                <th scope="row">{{$typeAgent->id}}</th>
-                                <td>{{$typeAgent->libTypeAgent}}</td>
+                                <th scope="row">{{$typeagent->id}}</th>
+                                <td>{{$typeagent->libTypeAgent}}</td>
                                 <td>
                                     @can('delete-users')
-                                    <form action="{{route('type.type.destroy',$typeAgent->id)}}" method="POST">
+                                    <form action="{{route('typeagent.typeagent.destroy',$typeagent->id)}}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Supprimer</button>
@@ -41,6 +43,9 @@
                             @endforeach
                         </tbody>
                       </table>
+
+            </div>
+            
                 </div>
             </div>
         </div>

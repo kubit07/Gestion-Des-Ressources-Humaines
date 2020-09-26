@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 style="font-family: Monotype Corsiva">Liste des Agents</h1>
+<h1 style="font-family: Monotype Corsiva">Liste des Agents Retraités</h1>
 
 <hr>
     <ul>
@@ -21,7 +21,6 @@
                             <th scope="col">Type Agent</th>
                             <th scope="col">Nationalite</th>
                             <th scope="col">Telephone</th>
-                            <th scope="col">Date d'Embauche</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,19 +36,15 @@
                             <td>{{$agent->typeAgent->libTypeAgent}}</td>
                             <td>{{$agent->nationAgent}}</td>
                             <td>{{$agent->tel}}</td>
-                            <td>{{\Carbon\Carbon::parse($agent->created_at)->format('d/m/Y H:i:s')}}</td>
                         </tr>
                         @endforeach
                         </tbody>
               </table> 
+              
+        </div>
 
-        <div style="overflow-x:auto;">
-            
     </ul>
-    <hr>
-
-    <div class="row d-flex justify-content-center">
-        {{$agents->links()}}
-    </div>
+    
+<hr>
 
 @endsection

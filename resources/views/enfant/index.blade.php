@@ -4,7 +4,9 @@
 <h1 style="font-family: Monotype Corsiva">Liste des Enfants</h1>
 <hr>
     <ul>
-
+        
+        <div style="overflow-x:auto;">
+            
             <table class="table" style="font-family: Monotype Corsiva;font-weight: bold;" >
                         <thead class="thead-dark">
                         <tr>
@@ -48,7 +50,10 @@
                         </tr>
                         @endforeach
                         </tbody>
-              </table> 
+              </table>
+
+        <div/>
+
     </ul>
     <hr>
 

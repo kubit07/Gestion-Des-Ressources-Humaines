@@ -14,8 +14,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();//va permettre de supprimer tout les utilisateurs de la table utilisateur
-        DB::table('role_user')->truncate();//va permettre de supprimer tout les donnes de la table role_user
+       // User::truncate();//va permettre de supprimer tout les utilisateurs de la table utilisateur
+       // DB::table('role_user')->truncate();//va permettre de supprimer tout les donnes de la table role_user
 
         $admin = User::create([
             'name' => 'admin',

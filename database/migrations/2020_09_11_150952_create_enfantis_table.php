@@ -22,7 +22,7 @@ class CreateEnfantisTable extends Migration
             $table->date('dateNaisEnfant');
             $table->string('lieuNaisEnfant');
             $table->string('sitMatEnfant');
-            $table->integer('telEnfant');
+            $table->string('telEnfant');
             $table->string('professionEnfant');
             $table->unsignedInteger('conjointi_id');
         });

@@ -35,6 +35,8 @@ Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function(){
     Route::get('/pasteurs','AgentsController@pasteurs')->name('agents.pasteurs');
     Route::get('/Catéchistes','AgentsController@Catéchistes')->name('agents.Catéchistes');
     Route::get('/valides','AgentsController@valides')->name('agents.valides');
+    Route::get('/invalides','AgentsController@invalides')->name('agents.invalides');
+    Route::get('/retraités','AgentsController@retraités')->name('agents.retraités');
     Route::get('/decedes','AgentsController@decedes')->name('agents.decedes');
     Route::get('/search','AgentsController@search')->name('search');
     Route::get('/searchPasteur','AgentsController@searchPasteur')->name('searchPasteur');
@@ -113,15 +115,34 @@ Route::namespace('Structure')->prefix('structure')->name('structure.')->group(fu
 
     Route::resource('structure','StructuresController');
 
+});
+
+
+Route::namespace('TypeAgent')->prefix('typeagent')->name('typeagent.')->group(function(){
+
+    Route::resource('typeagent','TypeagentsController');
+});
+
+
+Route::namespace('EtatsGeneral')->prefix('EtatGeneral')->name('EtatGeneral.')->group(function(){
+
+    Route::get('EtatGeneral/conjoint','EtatsController@etatsGeneralConjointLegitime')->name('AgentsConjoint');
 
 });
 
 
-Route::namespace('Type')->prefix('type')->name('type.')->group(function(){
+Route::namespace('EtatsGeneral')->prefix('EtatGeneral')->name('EtatGeneral.')->group(function(){
 
-    Route::resource('type','TypesController');
-
+    Route::get('EtatGeneral/conjointi','EtatsController@etatsGeneraletatsGeneralConjointIlLegitime')->name('AgentsConjointi');
 
 });
 
+Route::get('Charts','ChartsController@index')->name('agent.Charts');
 
+
+Route::get('/invoice', function() {
+
+    $pdf = PDF::loadView('invoice');
+    return $pdf->download('invoice.pdf');
+
+});

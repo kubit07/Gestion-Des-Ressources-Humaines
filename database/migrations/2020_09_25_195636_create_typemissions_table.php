@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAptitudesCompetencesTable extends Migration
+class CreateTypemissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAptitudesCompetencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('aptitudes_competences', function (Blueprint $table) {
+        Schema::create('typemissions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('libAp');
-            $table->string('appreciation');
+            $table->string('libTypeMission');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateAptitudesCompetencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aptitudes_competences');
+        Schema::dropIfExists('typemissions');
     }
 }

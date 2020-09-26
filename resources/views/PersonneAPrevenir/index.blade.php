@@ -19,6 +19,8 @@
                 <div class="card-header">Liste des Personnes a Prevenir</div>
                 <div class="card-body">
 
+            <div style="overflow-x:auto;">
+                
                     <table class="table">
                         <thead class="thead-dark">
                           <tr>
@@ -37,7 +39,7 @@
                                 <th scope="row">{{$personne->typePAP}}</th>
                                 <td>{{$personne->nomPAP}}</td>
                                 <td>{{$personne->numPAP}}</td>
-                                <td >{{$personne->agent->nomAgent}}</td>
+                                <td>{{$personne->agent->nomAgent}}</td>
                                 <td>
                                     @can('edit-users')
                                     <form action="{{route('personne.personne.destroy',$personne->id)}}" method="post" style="display: inline;">
@@ -52,6 +54,8 @@
                             @endforeach
                         </tbody>
                       </table>
+            </div>
+            
                 </div>
             </div>
         </div>

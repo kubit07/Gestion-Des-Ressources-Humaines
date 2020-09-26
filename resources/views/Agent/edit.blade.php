@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 style="font-variant: small-caps; text-shadow: 0px 5px 10px #f7d204;">Editer le profil de {{$agent->nomAgent}} {{$agent->prenomAgent}} </h2>
+<h2 style="font-family: Monotype Corsiva; text-shadow: 0px 5px 5px#f7d204;">Editer le profil de {{$agent->nomAgent}} {{$agent->prenomAgent}} </h2>
 
 <form method="post" action="{{route('agent.agents.update',$agent)}}" enctype="multipart/form-data">
 

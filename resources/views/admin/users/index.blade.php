@@ -1,13 +1,17 @@
 @extends('layouts.login')
 
 @section('content')
+<div style="overflow-x:auto;">
 <div style="font-family: Viner Hand ITC; font-weight: bold;">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Liste des utilisateurs</div>
                 <div class="card-body">
+
+                  <div style="overflow-x:auto;">
 
                     <table class="table">
                         <thead class="thead-dark">
@@ -46,6 +50,7 @@
                             @endforeach
                         </tbody>
                       </table>
+                  </div>
                 </div>
             </div>
         </div>
@@ -174,6 +179,7 @@
 
 
 
+</div>
 </div>
 </div>
 @endsection

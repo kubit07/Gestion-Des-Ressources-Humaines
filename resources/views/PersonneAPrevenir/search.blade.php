@@ -12,6 +12,8 @@
                 <div class="card-header">Liste des Personnes a Prevenir</div>
                 <div class="card-body">
 
+          <div style="overflow-x:auto;">
+
                     <table class="table">
                         <thead class="thead-dark">
                           <tr>
@@ -34,6 +36,9 @@
                             @endforeach
                         </tbody>
                       </table>
+
+          </div>
+          
                 </div>
             </div>
         </div>

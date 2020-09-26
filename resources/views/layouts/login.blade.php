@@ -25,7 +25,7 @@
 
 <body style="background-image:url({{asset('svg/bg_2.jpg')}});background-repeat:no-repeat; background-size:cover; background-attachement:fixed;">
     <div id="app">
-        <nav class="navbar navbar-expand navbar-dark bg-dark bg-dark border-bottom shadow-sm" style="font-family: Viner Hand ITC; font-weight: bold;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-dark border-bottom shadow-sm" style="font-family: Viner Hand ITC; font-weight: bold;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}" style="font-family: Monotype Corsiva">
                 <img src="{{asset('svg/image2.png')}}" width="55px" class="pr-3" style="border-right: solid 3px #FFF;">
